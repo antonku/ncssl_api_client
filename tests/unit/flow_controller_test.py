@@ -1,0 +1,51 @@
+import mock
+from unittest import TestCase
+from flow_controller import FlowController
+import logging
+logging.disable(logging.CRITICAL)
+
+
+@mock.patch('config.api.api_sandbox_config.ApiSandboxConfig')
+@mock.patch('config.crypto.crypto_config.CryptoConfig')
+class FlowControllerTest(TestCase):
+
+    def test_throws_error_on_invalid_command(self, mock_api_config, mock_crypto_config):
+
+        controller = FlowController(mock_api_config, mock_crypto_config, {'common_name': 'example.com'})
+
+        with self.assertRaises(AttributeError):
+            controller.execute('NON_EXISTENT_COMMAND')
+
+    @mock.patch('api.api_client.ApiClient')
+    @mock.patch('crypto.generator.CsrGenerator')
+    def test_initiates_api_call_on_valid_command(self, mock_api_config, mock_crypto_config, mock_api_client, mock_csr_generator):
+
+        controller = FlowController(mock_api_config, mock_crypto_config, {'common_name': 'example.com'})
+
+        controller.api_client = mock_api_client
+        controller.generator = mock_csr_generator
+
+        for commandName in ('getinfo', 'activate', 'create'):
+            controller.execute(commandName)
+            controller.api_client.send_call.assert_called()
+
+    @mock.patch('api.api_client.ApiClient')
+    @mock.patch('crypto.generator.CsrGenerator')
+    def test_activate_command_calls_csr_generator(self, mock_api_config, mock_crypto_config, mock_api_client, mock_csr_generator):
+
+        controller = FlowController(mock_api_config, mock_crypto_config, {'common_name': 'example.com'})
+
+        controller.api_client = mock_api_client
+        controller.generator = mock_csr_generator
+
+        controller.execute('activate')
+        controller.generator.generate_csr.assert_called()
+
+    @mock.patch('api.api_client.ApiClient')
+    @mock.patch('crypto.generator.CsrGenerator')
+    def test_create_and_activate_makes_both_calls(self, mock_api_config, mock_crypto_config, mock_api_client, mock_csr_generator):
+
+        pass
+
+
+
