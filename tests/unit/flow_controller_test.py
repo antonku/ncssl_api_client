@@ -41,11 +41,8 @@ class FlowControllerTest(TestCase):
         controller.execute('activate')
         controller.generator.generate_csr.assert_called()
 
-    @mock.patch('api.api_client.ApiClient')
-    @mock.patch('crypto.generator.CsrGenerator')
-    def test_create_and_activate_makes_both_calls(self, mock_api_config, mock_crypto_config, mock_api_client, mock_csr_generator):
 
-        pass
+
 
 
 
