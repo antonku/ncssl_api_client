@@ -10,6 +10,7 @@ class AbstractApiConfig(metaclass=ABCMeta):
         self.create_params = settings.create
         self.activate_params = settings.activate
         self.getinfo_params = settings.getinfo
+        self.retry_dcv_params = settings.retry_dcv
         self.headers = settings.headers
 
     def get_global_params(self):
@@ -31,6 +32,11 @@ class AbstractApiConfig(metaclass=ABCMeta):
     def get_getinfo_params(self):
         params = self.global_params.copy()
         params.update(self.getinfo_params)
+        return params
+
+    def get_retry_dcv_params(self):
+        params = self.global_params.copy()
+        params.update(self.retry_dcv_params)
         return params
 
     def get_headers(self):

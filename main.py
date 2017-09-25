@@ -27,10 +27,14 @@ def get_args():
     subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
     subparser_getinfo.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
 
+    subparser_getinfo = subparsers.add_parser(FlowController.OPERATION_NAME_RETRY_DCV)
+    subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
+    subparser_getinfo.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
+
     args = parser.parse_args()
 
     if args.command == 'activate':
-        if not getattr(args, 'cert_id', False) and not (getattr(args, 'new', False)):
+        if (not getattr(args, 'CertificateID', False)) and (not (getattr(args, 'new', False))):
             parser.error('You must either specify certificate id or "-new" prefix for activate operation')
 
     return args

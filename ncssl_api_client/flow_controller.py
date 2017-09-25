@@ -3,6 +3,7 @@ import logging
 from ncssl_api_client.api.api_client import ApiClient
 from ncssl_api_client.config.api.api_sandbox_config import ApiSandboxConfig
 from ncssl_api_client.crypto.generator import CsrGenerator
+from ncssl_api_client.api.api_response import ApiResponse
 
 logger = logging.getLogger(__name__)
 
@@ -13,6 +14,7 @@ class FlowController:
     OPERATION_NAME_ACTIVATE = 'activate'
     OPERATION_NAME_CREATE = 'create'
     OPERATION_NAME_GETINFO = 'getinfo'
+    OPERATION_NAME_RETRY_DCV = 'retry_dcv'
 
     def __init__(self, api_config, crypto_config, user_params):
         """
@@ -38,12 +40,13 @@ class FlowController:
         :param command: Command name to execute
         :type command: string
         :return: Api command response
-        :rtype: dict
+        :rtype: ApiResponse
         """
         logger.info('Executing operation: [{}]'.format(command))
-        result = self.call_method(command)
-        if result['ApiResponse']['@Status'] == 'OK':
+        api_response = self.call_method(command)
+        if api_response.is_successful():
             logger.info('Operation [{}] was performed successfully.'.format(command))
+            return api_response
         else:
             logger.error('API Error was encountered on [{}] operation. *** ABORTING ***'.format(command))
 
@@ -65,9 +68,20 @@ class FlowController:
         return self.api_client.send_call(getinfo_params)
 
     def create_and_activate(self):
-        create_result = self.execute(FlowController.OPERATION_NAME_CREATE)
-        self.params['CertificateID'] = create_result['ApiResponse']['CommandResponse']['SSLCreateResult']['SSLCertificate']['@CertificateID']
+        create_response = self.execute(FlowController.OPERATION_NAME_CREATE)
+        self.params['CertificateID'] = create_response.get_certificate_id()
         return self.execute(FlowController.OPERATION_NAME_ACTIVATE)
+
+    def retry_dcv(self):
+        retry_dcv_params = self.api_config.get_retry_dcv_params()
+        retry_dcv_params.update(self.params)
+        return self.api_client.send_call(retry_dcv_params)
+
+    def renew(self):
+        raise NotImplementedError
+
+    def reissue(self):
+        raise NotImplementedError
 
     def call_method(self, method_name):
         return getattr(self, method_name)()

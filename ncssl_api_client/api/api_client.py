@@ -3,6 +3,7 @@ import xmltodict
 import logging
 import coloredlogs
 import json
+from ncssl_api_client.api.api_response import ApiResponse
 coloredlogs.install(level='INFO')
 # logging.basicConfig(level=logging.INFO)
 
@@ -16,14 +17,21 @@ def return_as_dict(method):
     return wrapper
 
 
+def return_as_api_response(method):
+    def wrapper(*args):
+        return ApiResponse(method(*args))
+
+    return wrapper
+
+
 def api_logger(method):
     def wrapper(*args):
-        result = method(*args)
-        if result.get('ApiResponse').get('@Status') == 'OK':
-            logger.info(json.dumps(result['ApiResponse']['CommandResponse'], indent=2))
+        api_response = method(*args)
+        if api_response.is_successful():
+            logger.info(json.dumps(api_response.get_command_response(), indent=2))
         else:
-            logger.error(json.dumps(result['ApiResponse']['Errors'], indent=2))
-        return result
+            logger.error(json.dumps(api_response.get_error(), indent=2))
+        return api_response
     return wrapper
 
 
@@ -38,6 +46,7 @@ class ApiClient:
         self.config = config
 
     @api_logger
+    @return_as_api_response
     @return_as_dict
     def send_call(self, params):
         """

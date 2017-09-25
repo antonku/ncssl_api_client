@@ -28,7 +28,7 @@ class FlowControllerTest(TestCase):
         controller.api_client = mock_api_client
         controller.generator = mock_csr_generator
 
-        for commandName in ('getinfo', 'activate', 'create'):
+        for commandName in ('getinfo', 'activate', 'create', 'retry_dcv'):
             controller.execute(commandName)
             controller.api_client.send_call.assert_called()
 
