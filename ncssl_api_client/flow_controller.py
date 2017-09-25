@@ -1,9 +1,9 @@
-from config.api.api_production_config import ApiProductionConfig
-from config.api.api_sandbox_config import ApiSandboxConfig
-from config.crypto.crypto_config import CryptoConfig
-from api.api_client import ApiClient
-from crypto.generator import CsrGenerator
 import logging
+
+from ncssl_api_client.api.api_client import ApiClient
+from ncssl_api_client.config.api.api_sandbox_config import ApiSandboxConfig
+from ncssl_api_client.crypto.generator import CsrGenerator
+
 logger = logging.getLogger(__name__)
 
 
