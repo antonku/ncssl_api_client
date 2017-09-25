@@ -1,6 +1,7 @@
 import argparse
-from flow_controller import FlowController
-from config.manager import ConfigManager
+
+from ncssl_api_client.config.manager import ConfigManager
+from ncssl_api_client.flow_controller import FlowController
 
 
 def get_args():
