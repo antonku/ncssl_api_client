@@ -62,7 +62,6 @@ def get_args():
 
     args = parser.parse_args()
 
-    print(args)
     if args.command == 'activate':
         if (not getattr(args, 'CertificateID', False)) and (not (getattr(args, 'new', False))):
             parser.error('You must either specify certificate id or "-new" prefix for activate operation')
