@@ -1,11 +1,9 @@
-csr_subject = {
-    'C': 'US',
-    'ST': 'Arizona',
-    'L': 'Phoenix',
-    'O': 'Namecheap, Inc',
-    'CN': None,
-}
+import yaml
+import os
 
-key_size = 2048
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
-key_encryption_algorithm = '-aes256'
+with open(dir_path + "/settings.yaml", 'r') as f:
+    settings = yaml.load(f)
+
+locals().update(settings)

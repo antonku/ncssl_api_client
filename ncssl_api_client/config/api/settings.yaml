@@ -1,0 +1,52 @@
+url:
+    production: 'https://api.namecheap.com/xml.response'
+    sandbox: 'https://api.sandbox.namecheap.com/xml.response'
+
+general:
+    production:
+        ApiUser: internalssl
+        UserName: internalssl
+        ApiKey:
+        ClientIp: '193.111.60.4'
+    sandbox:
+        ApiUser: ssltool
+        UserName: ssltool
+        ApiKey: 
+        ClientIp: '193.111.60.4'
+
+activate:
+    AdminAddress1: 4600 East Washington Street Suite 305
+    AdminCity: Phoenix
+    AdminCountry: US
+    AdminEmailAddress: ssl@namecheap.com
+    AdminFirstName: Anton,
+    AdminJobTitle: SSL Support
+    AdminLastName: Ku
+    AdminPhone: '+1.6613102107'
+    AdminPostalCode: '85034'
+    AdminStateProvince: AZ
+    ApproverEmail: null
+    BillingJobTitle: SSL Support
+    CertificateID: null
+    Command: namecheap.ssl.activate
+    DNSDCValidation: 'False'
+    HTTPDCValidation: 'False'
+    TechJobTitle: SSL Support
+    WebServerType: apachessl
+    csr: null
+
+getinfo:
+    CertificateID: null,
+    Command: namecheap.ssl.getInfo
+
+create:
+    Command: namecheap.ssl.create
+    Type: PositiveSSL
+    Years: 1
+
+retry_dcv:
+    CertificateID: null,
+    Command: namecheap.ssl.resendApproverEmail
+
+headers:
+    Content-Type': application/x-www-form-urlencoded
