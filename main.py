@@ -2,6 +2,8 @@ import argparse
 
 from ncssl_api_client.config.manager import ConfigManager
 from ncssl_api_client.flow_controller import FlowController
+from ncssl_api_client.api.api_client import ApiClient
+from ncssl_api_client.crypto.generator import CsrGenerator
 
 
 def get_args():
@@ -59,6 +61,9 @@ if __name__ == '__main__':
     else:
         command = arguments.command
 
-    controller = FlowController(api_config, crypto_config, params)
-    result = controller.execute(command)
+    api_client = ApiClient(api_config)
+    csr_generator = CsrGenerator(crypto_config)
+
+    controller = FlowController(api_config, params, api_client, csr_generator)
+    controller.execute(command)
 

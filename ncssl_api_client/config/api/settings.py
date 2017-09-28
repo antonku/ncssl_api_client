@@ -51,5 +51,10 @@ create = {
     'Type': 'PositiveSSL'
 }
 
+retry_dcv = {
+    'Command': 'namecheap.ssl.resendApproverEmail',
+    'CertificateID': None,
+}
+
 headers = {'Content-Type': 'application/x-www-form-urlencoded'}
 

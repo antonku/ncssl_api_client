@@ -16,22 +16,24 @@ class FlowController:
     OPERATION_NAME_GETINFO = 'getinfo'
     OPERATION_NAME_RETRY_DCV = 'retry_dcv'
 
-    def __init__(self, api_config, crypto_config, user_params):
+    def __init__(self, api_config, user_params, api_client, csr_generator):
         """
         :param api_config: Api settings
         :type api_config: ApiProductionConfig|ApiSandboxConfig
 
-        :param crypto_config: Crypto (key generation) settings
-        :type crypto_config: CryptoConfig
-
         :param user_params: User input
         :type user_params: dict
+
+        :param api_client: Api client
+        :type api_client: ApiClient
+
+        :param csr_generator: csr generator
+        :type csr_generator: CsrGenerator
         """
         self.api_config = api_config
-        self.crypto_config = crypto_config
         self.params = user_params
-        self.api_client = ApiClient(api_config)
-        self.generator = CsrGenerator(crypto_config)
+        self.api_client = api_client
+        self.generator = csr_generator
 
     def execute(self, command):
         """
@@ -53,19 +55,19 @@ class FlowController:
     def create(self):
         create_params = self.api_config.get_create_params()
         create_params.update(self.params)
-        return self.api_client.send_call(create_params)
+        return self.send_request(create_params)
 
     def activate(self):
         self.params['csr'] = self.generator.generate_csr(self.params['common_name'])
         del self.params['common_name']
         activate_params = self.api_config.get_activate_params()
         activate_params.update(self.params)
-        return self.api_client.send_call(activate_params)
+        return self.send_request(activate_params)
 
     def getinfo(self):
         getinfo_params = self.api_config.get_getinfo_params()
         getinfo_params.update(self.params)
-        return self.api_client.send_call(getinfo_params)
+        return self.send_request(getinfo_params)
 
     def create_and_activate(self):
         create_response = self.execute(FlowController.OPERATION_NAME_CREATE)
@@ -75,7 +77,8 @@ class FlowController:
     def retry_dcv(self):
         retry_dcv_params = self.api_config.get_retry_dcv_params()
         retry_dcv_params.update(self.params)
-        return self.api_client.send_call(retry_dcv_params)
+
+        return self.send_request(retry_dcv_params)
 
     def renew(self):
         raise NotImplementedError
@@ -85,3 +88,6 @@ class FlowController:
 
     def call_method(self, method_name):
         return getattr(self, method_name)()
+
+    def send_request(self, payload):
+        return self.api_client.send_call(payload)

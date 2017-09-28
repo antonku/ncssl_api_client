@@ -53,6 +53,7 @@ class ApiClient:
         :param params: request payload
         :type params: dict
         :return: api response
+        :type: ApiResponse
         """
         response = requests.post(self.config.get_api_url(), headers=self.config.get_headers(), data=params)
         return response.text
