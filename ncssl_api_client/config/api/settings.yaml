@@ -80,5 +80,12 @@ revoke:
     Command: namecheap.ssl.revokecertificate
     CertificateType: null
 
+getlist:
+    Command: namecheap.ssl.getList
+    ListType: Active
+    SearchTerm: null
+    SortBy: Host_Name
+    PageSize: 100
+
 headers:
     Content-Type': application/x-www-form-urlencoded

@@ -60,6 +60,11 @@ def get_args():
     subparser_revoke.add_argument("-t", "--type", help="Type", type=str, dest='CertificateType', required=True)
     subparser_revoke.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
 
+    # getlist
+    subparser_getlist = subparsers.add_parser(FlowController.OPERATION_NAME_GET_LIST)
+    subparser_getlist.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
+    subparser_getlist.add_argument("-kw", "--keyword", help="Key word", type=str, dest='SearchTerm')
+
     args = parser.parse_args()
 
     if args.command == 'activate':

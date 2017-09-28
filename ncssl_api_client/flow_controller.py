@@ -18,6 +18,7 @@ class FlowController:
     OPERATION_NAME_REISSUE = 'reissue'
     OPERATION_NAME_RENEW = 'renew'
     OPERATION_NAME_REVOKE = 'revoke'
+    OPERATION_NAME_GET_LIST = 'getlist'
 
     def __init__(self, api_config, user_params, api_client, csr_generator):
         """
@@ -99,6 +100,11 @@ class FlowController:
         reissue_params = self.api_config.get_reissue_params()
         reissue_params.update(self.params)
         return self.send_request(reissue_params)
+
+    def getlist(self):
+        getlist_params = self.api_config.get_getlist_params()
+        getlist_params.update(self.params)
+        return self.send_request(getlist_params)
 
     def call_method(self, method_name):
         return getattr(self, method_name)()

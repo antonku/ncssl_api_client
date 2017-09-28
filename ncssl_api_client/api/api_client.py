@@ -5,7 +5,6 @@ import coloredlogs
 import json
 from ncssl_api_client.api.api_response import ApiResponse
 coloredlogs.install(level='INFO')
-# logging.basicConfig(level=logging.INFO)
 
 logger = logging.getLogger(__name__)
 
