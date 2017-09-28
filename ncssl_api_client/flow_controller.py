@@ -15,6 +15,8 @@ class FlowController:
     OPERATION_NAME_CREATE = 'create'
     OPERATION_NAME_GETINFO = 'getinfo'
     OPERATION_NAME_RETRY_DCV = 'retry_dcv'
+    OPERATION_NAME_REISSUE = 'reissue'
+    OPERATION_NAME_RENEW = 'renew'
 
     def __init__(self, api_config, user_params, api_client, csr_generator):
         """
@@ -77,14 +79,19 @@ class FlowController:
     def retry_dcv(self):
         retry_dcv_params = self.api_config.get_retry_dcv_params()
         retry_dcv_params.update(self.params)
-
         return self.send_request(retry_dcv_params)
 
     def renew(self):
-        raise NotImplementedError
+        renew_params = self.api_config.get_renew_params()
+        renew_params.update(self.params)
+        return self.send_request(renew_params)
 
     def reissue(self):
-        raise NotImplementedError
+        self.params['csr'] = self.generator.generate_csr(self.params['common_name'])
+        del self.params['common_name']
+        reissue_params = self.api_config.get_reissue_params()
+        reissue_params.update(self.params)
+        return self.send_request(reissue_params)
 
     def call_method(self, method_name):
         return getattr(self, method_name)()

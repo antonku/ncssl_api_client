@@ -11,7 +11,7 @@ general:
     sandbox:
         ApiUser: ssltool
         UserName: ssltool
-        ApiKey: 
+        ApiKey:
         ClientIp: '193.111.60.4'
 
 activate:
@@ -34,6 +34,33 @@ activate:
     TechJobTitle: SSL Support
     WebServerType: apachessl
     csr: null
+
+reissue:
+    AdminAddress1: 4600 East Washington Street Suite 305
+    AdminCity: Phoenix
+    AdminCountry: US
+    AdminEmailAddress: ssl@namecheap.com
+    AdminFirstName: Anton,
+    AdminJobTitle: SSL Support
+    AdminLastName: Ku
+    AdminPhone: '+1.6613102107'
+    AdminPostalCode: '85034'
+    AdminStateProvince: AZ
+    ApproverEmail: null
+    BillingJobTitle: SSL Support
+    CertificateID: null
+    Command: namecheap.ssl.reissue
+    DNSDCValidation: 'False'
+    HTTPDCValidation: 'False'
+    TechJobTitle: SSL Support
+    WebServerType: apachessl
+    csr: null
+
+renew:
+    Command: namecheap.ssl.renew
+    CertificateID: null
+    Years: 1
+    SSLType: null
 
 getinfo:
     CertificateID: null,

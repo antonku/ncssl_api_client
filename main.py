@@ -11,12 +11,12 @@ def get_args():
 
     subparsers = parser.add_subparsers(help='sub-command help', dest='command')
 
-    # create subparser
+    # create
     subparser_create = subparsers.add_parser(FlowController.OPERATION_NAME_CREATE)
     subparser_create.add_argument("-t", "--type", help="Type", type=str, default='PositiveSSL', dest='Type')
     subparser_create.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
 
-    # activate subparser
+    # activate
     subparser_activate = subparsers.add_parser(FlowController.OPERATION_NAME_ACTIVATE)
     subparser_activate.add_argument("-cn", "--common_name", help="Common Name", type=str, required=True)
     subparser_activate.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
@@ -25,13 +25,30 @@ def get_args():
     subparser_activate.add_argument("-new", "--new", help="Purchase new cert before activation", action='store_true')
     subparser_activate.add_argument("-id", "--cert_id", help="Certificate ID to activate", dest='CertificateID')
 
+    # reissue
+    subparser_reissue = subparsers.add_parser(FlowController.OPERATION_NAME_REISSUE)
+    subparser_reissue.add_argument("-cn", "--common_name", help="Common Name", type=str, required=True)
+    subparser_reissue.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
+    subparser_reissue.add_argument("-enc", "--encrypt", help="Whether to encrypt private key", action='store_true')
+    subparser_reissue.add_argument("-email", "--approver_email", help="Approver Email", type=str, default='support@namecheap.com', dest='ApproverEmail')
+    subparser_reissue.add_argument("-id", "--cert_id", help="Certificate ID to activate", dest='CertificateID', required=True)
+
+    # getinfo
     subparser_getinfo = subparsers.add_parser(FlowController.OPERATION_NAME_GETINFO)
     subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
     subparser_getinfo.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
 
+    # retry dcv
     subparser_getinfo = subparsers.add_parser(FlowController.OPERATION_NAME_RETRY_DCV)
     subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
     subparser_getinfo.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
+
+    # renew
+    subparser_renew = subparsers.add_parser(FlowController.OPERATION_NAME_RENEW)
+    subparser_renew.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
+    subparser_renew.add_argument("-t", "--type", help="Type", type=str, default='PositiveSSL', dest='SSLType', required=True)
+    subparser_renew.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
+    subparser_renew.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
 
     args = parser.parse_args()
 
