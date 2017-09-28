@@ -17,6 +17,7 @@ class FlowController:
     OPERATION_NAME_RETRY_DCV = 'retry_dcv'
     OPERATION_NAME_REISSUE = 'reissue'
     OPERATION_NAME_RENEW = 'renew'
+    OPERATION_NAME_REVOKE = 'revoke'
 
     def __init__(self, api_config, user_params, api_client, csr_generator):
         """
@@ -85,6 +86,11 @@ class FlowController:
         renew_params = self.api_config.get_renew_params()
         renew_params.update(self.params)
         return self.send_request(renew_params)
+
+    def revoke(self):
+        revoke_params = self.api_config.get_revoke_params()
+        revoke_params.update(self.params)
+        return self.send_request(revoke_params)
 
     def reissue(self):
         self.params['csr'] = self.generator.generate_csr(self.params['common_name'])

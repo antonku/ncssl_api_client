@@ -50,6 +50,12 @@ def get_args():
     subparser_renew.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
     subparser_renew.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
 
+    # revoke
+    subparser_revoke = subparsers.add_parser(FlowController.OPERATION_NAME_REVOKE)
+    subparser_revoke.add_argument("-id", "--cert_id", help="Certificate ID to revoke", dest='CertificateID', required=True)
+    subparser_revoke.add_argument("-t", "--type", help="Type", type=str, dest='CertificateType', required=True)
+    subparser_revoke.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
+
     args = parser.parse_args()
 
     if args.command == 'activate':

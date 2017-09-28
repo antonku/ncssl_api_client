@@ -75,5 +75,10 @@ retry_dcv:
     CertificateID: null,
     Command: namecheap.ssl.resendApproverEmail
 
+revoke:
+    CertificateID: null
+    Command: namecheap.ssl.revokecertificate
+    CertificateType: null
+
 headers:
     Content-Type': application/x-www-form-urlencoded
