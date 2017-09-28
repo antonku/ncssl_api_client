@@ -53,7 +53,8 @@ class FlowController:
             logger.info('Operation [{}] was performed successfully.'.format(command))
             return api_response
         else:
-            logger.error('API Error was encountered on [{}] operation. *** ABORTING ***'.format(command))
+            logger.error('API Error was encountered on [{}] operation.'.format(command))
+            return api_response
 
     def create(self):
         create_params = self.api_config.get_create_params()
