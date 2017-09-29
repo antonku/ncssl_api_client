@@ -87,5 +87,10 @@ getlist:
     SortBy: Host_Name
     PageSize: 100
 
+get_email_list:
+    Command: namecheap.ssl.getApproverEmailList
+    DomainName: null
+    CertificateType: null
+
 headers:
     Content-Type': application/x-www-form-urlencoded

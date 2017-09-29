@@ -65,6 +65,12 @@ def get_args():
     subparser_getlist.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
     subparser_getlist.add_argument("-kw", "--keyword", help="Key word", type=str, dest='SearchTerm')
 
+    # get email list
+    subparser_get_email_list = subparsers.add_parser(FlowController.OPERATION_NAME_GET_EMAIL_LIST)
+    subparser_get_email_list.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
+    subparser_get_email_list.add_argument("-t", "--type", help="Certificate type", type=str, dest='CertificateType', required=True)
+    subparser_get_email_list.add_argument("-d", "--domain_name", help="Domain name", type=str, dest='DomainName', required=True)
+
     args = parser.parse_args()
 
     if args.command == 'activate':

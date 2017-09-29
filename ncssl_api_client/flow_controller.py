@@ -19,6 +19,7 @@ class FlowController:
     OPERATION_NAME_RENEW = 'renew'
     OPERATION_NAME_REVOKE = 'revoke'
     OPERATION_NAME_GET_LIST = 'getlist'
+    OPERATION_NAME_GET_EMAIL_LIST = 'get_email_list'
 
     def __init__(self, api_config, user_params, api_client, csr_generator):
         """
@@ -105,6 +106,11 @@ class FlowController:
         getlist_params = self.api_config.get_getlist_params()
         getlist_params.update(self.params)
         return self.send_request(getlist_params)
+
+    def get_email_list(self):
+        get_email_list_params = self.api_config.get_email_list_params()
+        get_email_list_params.update(self.params)
+        return self.send_request(get_email_list_params)
 
     def call_method(self, method_name):
         return getattr(self, method_name)()
