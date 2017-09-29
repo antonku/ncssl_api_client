@@ -1,9 +1,11 @@
 import argparse
 
-from ncssl_api_client.config.manager import ConfigManager
-from ncssl_api_client.flow_controller import FlowController
 from ncssl_api_client.api.api_client import ApiClient
+from ncssl_api_client.config.manager import ConfigManager
 from ncssl_api_client.crypto.generator import CsrGenerator
+from ncssl_api_client.flow_controller import FlowController
+
+
 
 
 def get_args():
@@ -64,6 +66,8 @@ def get_args():
     subparser_getlist = subparsers.add_parser(FlowController.OPERATION_NAME_GET_LIST)
     subparser_getlist.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
     subparser_getlist.add_argument("-kw", "--keyword", help="Key word", type=str, dest='SearchTerm')
+    subparser_getlist.add_argument("-f", "--filter", help="Filter", type=str, dest='ListType')
+    subparser_getlist.add_argument("-s", "--sort_by", help="Sort by", type=str, dest='SortBy')
 
     # get email list
     subparser_get_email_list = subparsers.add_parser(FlowController.OPERATION_NAME_GET_EMAIL_LIST)
@@ -81,6 +85,10 @@ def get_args():
         if (not args.HTTPDCValidation) and (not args.DNSDCValidation) and (not (getattr(args, 'ApproverEmail', False))):
             parser.error('You must specify either "http_dcv", "cname_dcv" or approver email address')
 
+    filter_type = getattr(args, 'ListType', None)
+    if filter_type:
+        pass
+    
     return args
 
 
