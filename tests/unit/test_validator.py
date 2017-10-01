@@ -32,4 +32,4 @@ class ValidatorTest(unittest.TestCase):
     def test_returns_filter_valid(self):
 
         valid_filter = Validator.validate_filter('aCtIve')
-        self.assertEqual('ACTIVE', valid_filter)
+        self.assertEqual('Active', valid_filter)
