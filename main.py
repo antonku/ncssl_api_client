@@ -4,8 +4,7 @@ from ncssl_api_client.api.api_client import ApiClient
 from ncssl_api_client.config.manager import ConfigManager
 from ncssl_api_client.crypto.generator import CsrGenerator
 from ncssl_api_client.flow_controller import FlowController
-
-
+from ncssl_api_client.validator import Validator
 
 
 def get_args():
@@ -85,9 +84,17 @@ def get_args():
         if (not args.HTTPDCValidation) and (not args.DNSDCValidation) and (not (getattr(args, 'ApproverEmail', False))):
             parser.error('You must specify either "http_dcv", "cname_dcv" or approver email address')
 
+    sorter_type = getattr(args, 'SortBy', None)
+    if sorter_type:
+        args.SortBy = Validator.validate_sorter(sorter_type)
+
     filter_type = getattr(args, 'ListType', None)
     if filter_type:
-        pass
+        args.ListType = Validator.validate_filter(filter_type)
+
+    certificate_type = getattr(args, 'Type', None)
+    if certificate_type:
+        args.ListType = Validator.validate_certificate_type(certificate_type)
     
     return args
 
