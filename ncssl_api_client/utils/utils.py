@@ -22,6 +22,7 @@ class Utils:
     def create_directory(dir_name):
         try:
             os.mkdir(dir_name)
+            return True
         except FileExistsError:
             answer = input('\nDirectory "{}" already exists. Do you want to overwrite it contents? (Y/N) '.format(dir_name))
             if answer.lower() == 'yes' or answer.lower() == 'y':
