@@ -14,6 +14,7 @@ def get_args():
     # create
     subparser_create = subparsers.add_parser(FlowController.OPERATION_NAME_CREATE)
     subparser_create.add_argument("-t", "--type", help="Type", type=str, default='PositiveSSL', dest='Type')
+    subparser_create.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
     subparser_create.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
 
     # activate
@@ -21,21 +22,21 @@ def get_args():
     subparser_activate.add_argument("-cn", "--common_name", help="Common Name", type=str, required=True)
     subparser_activate.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
     subparser_activate.add_argument("-enc", "--encrypt", help="Whether to encrypt private key", action='store_true')
-    subparser_activate.add_argument("-email", "--approver_email", help="Approver Email", type=str, dest='ApproverEmail')
+    subparser_activate.add_argument("-e", "--email", help="Approver Email", type=str, dest='ApproverEmail')
     subparser_activate.add_argument("-new", "--new", help="Purchase new cert before activation", action='store_true')
     subparser_activate.add_argument("-id", "--cert_id", help="Certificate ID to activate", dest='CertificateID')
     subparser_activate.add_argument("-http", "--http_dcv", help="Use HTTP validation", action='store_true', dest='HTTPDCValidation')
-    subparser_activate.add_argument("-cname", "--cname_dcv", help="Use DNS validation", action='store_true', dest='DNSDCValidation')
+    subparser_activate.add_argument("-dns", "--dns_dcv", help="Use DNS validation", action='store_true', dest='DNSDCValidation')
 
     # reissue
     subparser_reissue = subparsers.add_parser(FlowController.OPERATION_NAME_REISSUE)
     subparser_reissue.add_argument("-cn", "--common_name", help="Common Name", type=str, required=True)
     subparser_reissue.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
     subparser_reissue.add_argument("-enc", "--encrypt", help="Whether to encrypt private key", action='store_true')
-    subparser_reissue.add_argument("-email", "--approver_email", help="Approver Email", type=str, dest='ApproverEmail')
+    subparser_reissue.add_argument("-e", "--email", help="Approver Email", type=str, dest='ApproverEmail')
     subparser_reissue.add_argument("-id", "--cert_id", help="Certificate ID to activate", dest='CertificateID', required=True)
     subparser_reissue.add_argument("-http", "--http_dcv", help="Use HTTP validation", action='store_true', dest='HTTPDCValidation')
-    subparser_reissue.add_argument("-cname", "--cname_dcv", help="Use DNS validation", action='store_true', dest='DNSDCValidation')
+    subparser_reissue.add_argument("-dns", "--dns_dcv", help="Use DNS validation", action='store_true', dest='DNSDCValidation')
 
     # getinfo
     subparser_getinfo = subparsers.add_parser(FlowController.OPERATION_NAME_GETINFO)
@@ -71,7 +72,7 @@ def get_args():
     subparser_get_email_list = subparsers.add_parser(FlowController.OPERATION_NAME_GET_EMAIL_LIST)
     subparser_get_email_list.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
     subparser_get_email_list.add_argument("-t", "--type", help="Certificate type", type=str, dest='CertificateType', required=True)
-    subparser_get_email_list.add_argument("-d", "--domain_name", help="Domain name", type=str, dest='DomainName', required=True)
+    subparser_get_email_list.add_argument("-d", "--domain", help="Domain name", type=str, dest='DomainName', required=True)
 
     args = parser.parse_args()
 
