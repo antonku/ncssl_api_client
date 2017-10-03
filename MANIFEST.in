@@ -1,0 +1,2 @@
+include README.rst
+recursive-include ncssl_api_client/config *.yaml
