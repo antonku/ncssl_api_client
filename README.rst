@@ -74,12 +74,9 @@ Should you want to create a certificate and activate it in a single command, sim
 
 There are three possible options for domain control validation (DCV):
 
-* Email DCV
-  >>> ncsslapi activate -id 1111111 -cn test.example.com -e admin@example.com
-* HTTP DCV
-  >>> ncsslapi activate -id 1111111 -cn test.example.com -http
-* DNS DCV
-  >>> ncsslapi activate -id 1111111 -cn test.example.com -dns
+* Email DCV: ``ncsslapi activate -id 1111111 -cn test.example.com -e admin@example.com``
+* HTTP DCV: ``ncsslapi activate -id 1111111 -cn test.example.com -http``
+* DNS DCV: ``ncsslapi activate -id 1111111 -cn test.example.com -dns``
 
 
 **Arguments**
