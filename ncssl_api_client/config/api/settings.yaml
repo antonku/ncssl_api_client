@@ -15,44 +15,44 @@ general:
         ClientIp: null
 
 activate:
-    AdminAddress1: 4600 East Washington Street Suite 305
-    AdminCity: Phoenix
-    AdminCountry: US
-    AdminEmailAddress: ssl@namecheap.com
-    AdminFirstName: Anton,
-    AdminJobTitle: SSL Support
-    AdminLastName: Ku
-    AdminPhone: '+1.6613102107'
-    AdminPostalCode: '85034'
-    AdminStateProvince: AZ
-    ApproverEmail: null
-    BillingJobTitle: SSL Support
-    CertificateID: null
     Command: namecheap.ssl.activate
+    AdminAddress1: null
+    AdminCity: null
+    AdminCountry: null
+    AdminEmailAddress: null
+    AdminFirstName: null,
+    AdminJobTitle: null
+    AdminLastName: null
+    AdminPhone: null
+    AdminPostalCode: null
+    AdminStateProvince: null
+    ApproverEmail: null
+    BillingJobTitle: null
+    CertificateID: null
     DNSDCValidation: 'False'
     HTTPDCValidation: 'False'
-    TechJobTitle: SSL Support
+    TechJobTitle: null
     WebServerType: apachessl
     csr: null
 
 reissue:
-    AdminAddress1: 4600 East Washington Street Suite 305
-    AdminCity: Phoenix
-    AdminCountry: US
-    AdminEmailAddress: ssl@namecheap.com
-    AdminFirstName: Anton,
-    AdminJobTitle: SSL Support
-    AdminLastName: Ku
-    AdminPhone: '+1.6613102107'
-    AdminPostalCode: '85034'
-    AdminStateProvince: AZ
-    ApproverEmail: null
-    BillingJobTitle: SSL Support
-    CertificateID: null
     Command: namecheap.ssl.reissue
+    AdminAddress1: null
+    AdminCity: null
+    AdminCountry: null
+    AdminEmailAddress: null
+    AdminFirstName: null,
+    AdminJobTitle: null
+    AdminLastName: null
+    AdminPhone: null
+    AdminPostalCode: null
+    AdminStateProvince: null
+    ApproverEmail: null
+    BillingJobTitle: null
+    CertificateID: null
     DNSDCValidation: 'False'
     HTTPDCValidation: 'False'
-    TechJobTitle: SSL Support
+    TechJobTitle: null
     WebServerType: apachessl
     csr: null
 

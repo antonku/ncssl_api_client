@@ -1,8 +1,8 @@
 csr_subject:
     C: US
-    ST: Arizona
-    L: Phoenix
-    O: Namecheap, Inc
+    ST: null
+    L: null
+    O: null
     CN: null
 
 key_size: 2048
