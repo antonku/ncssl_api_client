@@ -14,6 +14,7 @@ setup(name='ncssl-api-client',
           'xmltodict',
           'pyyaml',
           'coloredlogs',
+          'ipgetter',
       ],
       entry_points={
           'console_scripts': ['ncsslapi=ncssl_api_client.ncsslapi:main'],

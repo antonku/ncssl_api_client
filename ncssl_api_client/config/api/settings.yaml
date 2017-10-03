@@ -4,15 +4,15 @@ url:
 
 general:
     production:
-        ApiUser: internalssl
-        UserName: internalssl
-        ApiKey:
-        ClientIp: '193.111.60.4'
+        ApiUser: null
+        UserName: null
+        ApiKey: null
+        ClientIp: null
     sandbox:
-        ApiUser: ssltool
-        UserName: ssltool
-        ApiKey:
-        ClientIp: '193.111.60.4'
+        ApiUser: null
+        UserName: null
+        ApiKey: null
+        ClientIp: null
 
 activate:
     AdminAddress1: 4600 East Washington Street Suite 305
@@ -93,4 +93,4 @@ get_email_list:
     CertificateType: null
 
 headers:
-    Content-Type': application/x-www-form-urlencoded
+    Content-Type: application/x-www-form-urlencoded
