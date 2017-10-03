@@ -49,6 +49,7 @@ Purchases a certificate
 
 TODO: Implement years
 
+>>> ncsslapi create -t EssentialSSL
 >>> ncsslapi create -t PositiveSSL -y 2
 
 **Arguments**
@@ -70,6 +71,16 @@ Generates CSR and activates a certificate with it
 Should you want to create a certificate and activate it in a single command, simply add ``-new`` flag to the command
 
 >>> ncsslapi activate -new -cn test.example.com -e admin@example.com
+
+There are three possible options for domain control validation (DCV):
+
+* Email DCV
+  >>> ncsslapi activate -id 1111111 -cn test.example.com -e admin@example.com
+* HTTP DCV
+  >>> ncsslapi activate -id 1111111 -cn test.example.com -http
+* DNS DCV
+  >>> ncsslapi activate -id 1111111 -cn test.example.com -dns
+
 
 **Arguments**
 
@@ -97,6 +108,8 @@ _______
 Generates CSR and reissues a certificate with it
 
 >>> ncsslapi reissue -id 1111111 -cn test.example.com -e admin@example.com
+>>> ncsslapi reissue -id 1111111 -cn test.example.com -http
+>>> ncsslapi reissue -id 1111111 -cn test.example.com -dns -enc
 
 **Arguments**
 
@@ -151,6 +164,7 @@ _____
 
 Purchases a renewal certificate
 
+>>> ncsslapi renew -id -t EssentialSSL
 >>> ncsslapi renew -id 1111111 -y 1 -t PositiveSSL
 
 **Arguments**
@@ -185,7 +199,20 @@ GetList
 _______
 Shows list of SSL certificates in your Namecheap account
 
->>> ncsslapi getlist -kw example.com -f ACTIVE
+>>> ncsslapi getlist -kw
+>>> ncsslapi getlist -kw example.com -f ACTIVE -s PURCHASEDATE
+
+**Arguments**
+
++----------+------------+-----------------------------------------------------------------------------------------------------+---------------+
+| ShortCut | Full Name  | Description                                                                                         | Required      |
++----------+------------+-----------------------------------------------------------------------------------------------------+---------------+
+| -kw      | --keyword  | Show only items that match the key word, can be a domain for example                                | No            |
++----------+------------+-----------------------------------------------------------------------------------------------------+---------------+
+| -f       | --filter   | Filters the result, see the list of available options in the dedicated section                      | No            |
++----------+------------+-----------------------------------------------------------------------------------------------------+---------------+
+| -s       | --sort_by  | Sorts the result, see the list of available options in the dedicated section                        | No            |
++----------+------------+-----------------------------------------------------------------------------------------------------+---------------+
 
 GetEmailList
 ------------
