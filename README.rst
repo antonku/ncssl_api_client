@@ -47,8 +47,6 @@ Create
 ------
 Purchases a certificate
 
-TODO: Implement years
-
 >>> ncsslapi create -t EssentialSSL
 >>> ncsslapi create -t PositiveSSL -y 2
 
@@ -227,6 +225,46 @@ Shows list of possible approval emails for the given domain name
 | -t       | --type    | Type of certificate. See the list the of available options in the dedicated section | Yes      |
 +----------+-----------+-------------------------------------------------------------------------------------+----------+
 
+Enumerables
+___________
 
+**Certificate Types**
 
+* PositiveSSL
+* EssentialSSL
+* PositiveSSL Wildcard
+* EssentialSSL Wildcard
+* PositiveSSL Multi Domain
+* InstantSSL
+* InstantSSL Pro
+* PremiumSSL
+* PremiumSSL Wildcard
+* Multi Domain SSL
+* Unified Communications
+* EV SSL
+* EV Multi Domain SSL
+
+**Sorters**
+
+* PURCHASEDATE
+* PURCHASEDATE_DESC
+* SSLTYPE
+* SSLTYPE_DESC
+* EXPIREDATETIME
+* EXPIREDATETIME_DESC
+* Host_Name
+* Host_Name_DESC
+
+**Filters**
+
+* Processing
+* EmailSent
+* TechnicalProblem
+* InProgress
+* Completed
+* Deactivated
+* Active
+* Cancelled
+* NewPurchase
+* NewRenewal
 
