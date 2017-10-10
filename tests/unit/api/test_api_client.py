@@ -6,7 +6,7 @@ from ncssl_api_client.api.api_response import ApiResponse
 logging.disable(logging.CRITICAL)
 
 
-class CommandLineTest(TestCase):
+class ApiClientTest(TestCase):
 
     @mock.patch('ncssl_api_client.config.api.api_sandbox_config.ApiSandboxConfig')
     @mock.patch('requests.post')
