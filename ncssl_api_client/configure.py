@@ -71,8 +71,15 @@ def setup_configs():
         source_crypto_config_path = DELIMITER.join([PACKAGE_DIR, CONFIG_DIR, CRYPTO_DIR, SETTINGS_FILE_NAME])
         copyfile(source_crypto_config_path, user_crypto_config_path)
 
-if os.getenv('NCSSLAPIENV', 'PRODUCTION') != 'TEST':
-    os.chdir(HOME)
-    setup_layout()
-    setup_configs()
+
+def main():
+    if os.getenv('NCSSLAPIENV', 'PRODUCTION') != 'TEST':
+        print('*** Application seems to be unconfigured ***')
+        print('~~~~~~~~~~~~~~~~~~~~~~~~CONFIGURING~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+        os.chdir(HOME)
+        setup_layout()
+        setup_configs()
+        print('\n~~~~~~~~~~~~~~~~~~~~CONFIGURATION FINISHED~~~~~~~~~~~~~~~~~~~~')
+        print('*** Application is ready for use ***')
+        exit()
 
