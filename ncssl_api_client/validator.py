@@ -34,4 +34,3 @@ class Validator:
         return list(filter(
             lambda valid_value: input_value.lower() == valid_value.lower(), enum
         ))
-

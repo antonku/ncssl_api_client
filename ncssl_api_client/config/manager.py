@@ -16,7 +16,3 @@ class ConfigManager:
     @staticmethod
     def get_crypto_config():
         return CryptoConfig()
-
-    
-    
-

@@ -153,4 +153,3 @@ def main():
 
     controller = FlowController(api_config, params, api_client, csr_generator)
     controller.execute(command)
-

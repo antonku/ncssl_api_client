@@ -82,4 +82,3 @@ def main():
         print('\n~~~~~~~~~~~~~~~~~~~~CONFIGURATION FINISHED~~~~~~~~~~~~~~~~~~~~')
         print('*** Application is ready for use ***')
         exit()
-

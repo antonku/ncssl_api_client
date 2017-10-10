@@ -45,9 +45,3 @@ class FlowControllerTest(TestCase):
                 controller = FlowController(api_config_mock, {'common_name': 'example.com'}, api_client_mock, csr_generator_mock)
                 result = controller.execute(command_name)
                 self.assertEqual(result, api_resp_mock)
-
-
-
-
-
-

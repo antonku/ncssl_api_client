@@ -23,9 +23,6 @@ class CsrGenerator:
             openssl_args.insert(1, self.config.get_key_encryption_algorithm())
         self.openssl_exec(openssl_args)
 
-    def _prepare_fs(self, file_name):
-        Utils.update_path(file_name)
-
     def _prepare_subject(self, common_name):
         subject = self.config.get_csr_subject()
         subject['CN'] = common_name
@@ -46,6 +43,10 @@ class CsrGenerator:
         self.openssl_exec(openssl_args)
 
         return Utils.get_csr_as_text(file_name)
+
+    @staticmethod
+    def _prepare_fs(file_name):
+        Utils.update_path(file_name)
 
     @staticmethod
     def openssl_exec(cli_args):
