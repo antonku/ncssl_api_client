@@ -71,7 +71,8 @@ def setup_configs():
         source_crypto_config_path = DELIMITER.join([PACKAGE_DIR, CONFIG_DIR, CRYPTO_DIR, SETTINGS_FILE_NAME])
         copyfile(source_crypto_config_path, user_crypto_config_path)
 
-os.chdir(HOME)
-setup_layout()
-setup_configs()
+if os.getenv('NCSSLAPIENV', 'PRODUCTION') != 'TEST':
+    os.chdir(HOME)
+    setup_layout()
+    setup_configs()
 

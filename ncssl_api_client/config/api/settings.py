@@ -5,7 +5,8 @@ from ncssl_api_client.configure import API_CONFIG_PATH, DELIMITER, SETTINGS_FILE
 home = os.path.expanduser("~")
 user_api_settings_path = DELIMITER.join([home, API_CONFIG_PATH, SETTINGS_FILE_NAME])
 
-with open(user_api_settings_path) as f:
-    settings = yaml.load(f)
+if os.getenv('NCSSLAPIENV', 'PRODUCTION') != 'TEST':
+    with open(user_api_settings_path) as f:
+        settings = yaml.load(f)
 
-locals().update(settings)
+    locals().update(settings)

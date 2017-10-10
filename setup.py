@@ -19,5 +19,6 @@ setup(name='ncssl-api-client',
       entry_points={
           'console_scripts': ['ncsslapi=ncssl_api_client.ncsslapi:main'],
       },
+      test_suite='tests',
       include_package_data=True,
       zip_safe=False)
