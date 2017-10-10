@@ -11,5 +11,5 @@ try:
         settings = yaml.load(f)
 
     locals().update(settings)
-except FileNotFoundError:
+except EnvironmentError:  # FileNotFoundError
     build_config()

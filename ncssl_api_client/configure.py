@@ -2,6 +2,7 @@ import os
 import yaml
 import ipgetter
 from shutil import copyfile
+from builtins import input
 
 BASE_DIR = 'ncsslapi'
 CERTS_DIR = 'certs'
@@ -18,11 +19,6 @@ CRYPTO_CONFIG_PATH = DELIMITER.join([CONFIG_PATH, CRYPTO_DIR])
 
 HOME = os.path.expanduser("~")
 PACKAGE_DIR = os.path.dirname(os.path.realpath(__file__))
-
-try:
-    input = raw_input
-except NameError:
-    pass
 
 
 def setup_layout():

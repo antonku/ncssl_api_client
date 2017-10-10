@@ -1,5 +1,6 @@
 import os
 import logging
+from builtins import input
 from datetime import datetime
 from ncssl_api_client.configure import CERTS_PATH, DELIMITER, HOME
 logger = logging.getLogger(__name__)
@@ -24,7 +25,7 @@ class Utils:
         try:
             os.makedirs(dir_path)
             return True
-        except FileExistsError:
+        except EnvironmentError:  # FileExistsError
             answer = input('\nDirectory "{}" already exists. Do you want to overwrite it contents? (Y/N) '.format(dir_path))
             if answer.lower() == 'yes' or answer.lower() == 'y':
                 return True

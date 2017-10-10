@@ -1,9 +1,10 @@
 from abc import ABCMeta
+from future.utils import with_metaclass
 
 from ncssl_api_client.config.api import settings
 
 
-class AbstractApiConfig(metaclass=ABCMeta):
+class AbstractApiConfig(with_metaclass(ABCMeta)):
     def __init__(self):
         self.global_params = None
         self.api_url = None

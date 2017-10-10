@@ -51,4 +51,4 @@ class CsrGenerator:
     @staticmethod
     def openssl_exec(cli_args):
         cli_args.insert(0, 'openssl')
-        subprocess.run(cli_args)
+        subprocess.check_call(cli_args)
