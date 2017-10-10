@@ -2,7 +2,7 @@ import logging
 
 from ncssl_api_client.api.api_client import ApiClient
 from ncssl_api_client.config.api.api_sandbox_config import ApiSandboxConfig
-from ncssl_api_client.crypto.generator import CsrGenerator
+from ncssl_api_client.crypto.csr_generator import CsrGenerator
 from ncssl_api_client.api.api_response import ApiResponse
 
 logger = logging.getLogger(__name__)

@@ -1,7 +1,7 @@
 import argparse
 from ncssl_api_client.api.api_client import ApiClient
 from ncssl_api_client.config.manager import ConfigManager
-from ncssl_api_client.crypto.generator import CsrGenerator
+from ncssl_api_client.crypto.csr_generator import CsrGenerator
 from ncssl_api_client.flow_controller import FlowController
 from ncssl_api_client.validator import Validator
 
