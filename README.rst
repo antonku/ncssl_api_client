@@ -96,6 +96,11 @@ There are three possible options for domain control validation (DCV):
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
 | -enc     | --ecnrypt    | If set, private key will be encrypted with a passphrase. This argument must be used without a value     | No            |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
+| -t       | --type       | Certificate Type. See list of available options in the dedicated section                                | Yes           |
++----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
+| -y       | --years      | The number of year to purchase certificate for. Default is 1.            | No       |
++----------+--------------+--------------------------------------------------------------------------+----------+
+
 
 Reissue
 _______
