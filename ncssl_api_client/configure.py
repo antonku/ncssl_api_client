@@ -3,6 +3,7 @@ import yaml
 import ipgetter
 from shutil import copyfile
 from builtins import input
+from getpass import getpass
 
 BASE_DIR = 'ncsslapi'
 CERTS_DIR = 'certs'
@@ -41,7 +42,7 @@ def update_with_user_api_info(settings):
     for env in ['production', 'sandbox']:
         settings['general'][env]['UserName'] = input('Enter Namecheap {} username: '.format(env))
         settings['general'][env]['ApiUser'] = settings['general'][env]['UserName']
-        settings['general'][env]['ApiKey'] = input('Enter Namecheap {} api key: '.format(env))
+        settings['general'][env]['ApiKey'] = getpass('Enter Namecheap {} api key: '.format(env))
         settings['general'][env]['ClientIp'] = client_ip
 
     admin_email = input('Enter email address certificates should be sent to: ')
