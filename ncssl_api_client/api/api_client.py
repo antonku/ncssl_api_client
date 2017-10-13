@@ -3,9 +3,9 @@ import xmltodict
 import logging
 import coloredlogs
 import json
+from ncssl_api_client.utils.utils import Utils
 from ncssl_api_client.api.api_response import ApiResponse
 coloredlogs.install(level='INFO')
-
 logger = logging.getLogger(__name__)
 
 
@@ -27,7 +27,8 @@ def api_logger(method):
     def wrapper(*args):
         api_response = method(*args)
         if api_response.is_successful():
-            logger.info(json.dumps(api_response.get_command_response(), indent=2))
+            command_response = api_response.get_command_response()
+            logger.info(Utils.pretty_output(command_response))
         else:
             logger.error(json.dumps(api_response.get_error(), indent=2))
         return api_response

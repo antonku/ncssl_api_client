@@ -53,6 +53,7 @@ def get_args():
     )
     subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
     subparser_getinfo.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
+    subparser_getinfo.add_argument("-rc", "--return_certs", help="Return certificates in response", action='store_true', dest='ReturnCertificate')
 
     # retry dcv
     subparser_getinfo = subparsers.add_parser(
@@ -120,7 +121,7 @@ def get_args():
         if filter_type:
             args.ListType = Validator.validate_filter(filter_type)
 
-        certificate_type = getattr(args, 'Type', None)
+        certificate_type = getattr(args, 'Type', None) or getattr(args, 'CertificateType', None)
         if certificate_type:
             args.ListType = Validator.validate_certificate_type(certificate_type)
     except ValueError as e:
