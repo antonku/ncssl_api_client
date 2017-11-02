@@ -1,7 +1,6 @@
 import logging
 
 from ncssl_api_client.api.api_client import ApiClient
-from ncssl_api_client.config.api.api_production_config import ApiProductionConfig
 from ncssl_api_client.config.api.api_sandbox_config import ApiSandboxConfig
 from ncssl_api_client.crypto.csr_generator import CsrGenerator
 from ncssl_api_client.api.api_response import ApiResponse
