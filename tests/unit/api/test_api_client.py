@@ -8,7 +8,7 @@ logging.disable(logging.CRITICAL)
 
 class ApiClientTest(TestCase):
 
-    @mock.patch('ncssl_api_client.config.api.api_sandbox_config.ApiSandboxConfig')
+    @mock.patch('ncssl_api_client.config.api.api_client_sandbox_config.ApiSandboxClientConfig')
     @mock.patch('requests.post')
     def test_ReturnsApiResponse(self, request_post, api_config):
         request_post.return_value.text = '<ApiResponse Status="OK"><CommandResponse></CommandResponse></ApiResponse>'

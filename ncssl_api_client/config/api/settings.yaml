@@ -1,96 +1,98 @@
-url:
-    production: 'https://api.namecheap.com/xml.response'
-    sandbox: 'https://api.sandbox.namecheap.com/xml.response'
+client:
+    url:
+        production: 'https://api.namecheap.com/xml.response'
+        sandbox: 'https://api.sandbox.namecheap.com/xml.response'
 
-general:
-    production:
-        ApiUser: null
-        UserName: null
-        ApiKey: null
-        ClientIp: null
-    sandbox:
-        ApiUser: null
-        UserName: null
-        ApiKey: null
-        ClientIp: null
+    general:
+        production:
+            ApiUser: null
+            UserName: null
+            ApiKey: null
+            ClientIp: null
+        sandbox:
+            ApiUser: null
+            UserName: null
+            ApiKey: null
+            ClientIp: null
 
-activate:
-    Command: namecheap.ssl.activate
-    AdminAddress1: null
-    AdminCity: null
-    AdminCountry: null
-    AdminEmailAddress: null
-    AdminFirstName: null,
-    AdminJobTitle: null
-    AdminLastName: null
-    AdminPhone: null
-    AdminPostalCode: null
-    AdminStateProvince: null
-    ApproverEmail: null
-    BillingJobTitle: null
-    CertificateID: null
-    DNSDCValidation: 'False'
-    HTTPDCValidation: 'False'
-    TechJobTitle: null
-    WebServerType: apachessl
-    csr: null
+    headers:
+        Content-Type: application/x-www-form-urlencoded
 
-reissue:
-    Command: namecheap.ssl.reissue
-    AdminAddress1: null
-    AdminCity: null
-    AdminCountry: null
-    AdminEmailAddress: null
-    AdminFirstName: null,
-    AdminJobTitle: null
-    AdminLastName: null
-    AdminPhone: null
-    AdminPostalCode: null
-    AdminStateProvince: null
-    ApproverEmail: null
-    BillingJobTitle: null
-    CertificateID: null
-    DNSDCValidation: 'False'
-    HTTPDCValidation: 'False'
-    TechJobTitle: null
-    WebServerType: apachessl
-    csr: null
+command:
+    activate:
+        Command: namecheap.ssl.activate
+        AdminAddress1: null
+        AdminCity: null
+        AdminCountry: null
+        AdminEmailAddress: null
+        AdminFirstName: null,
+        AdminJobTitle: null
+        AdminLastName: null
+        AdminPhone: null
+        AdminPostalCode: null
+        AdminStateProvince: null
+        ApproverEmail: null
+        BillingJobTitle: null
+        CertificateID: null
+        DNSDCValidation: 'False'
+        HTTPDCValidation: 'False'
+        TechJobTitle: null
+        WebServerType: apachessl
+        csr: null
 
-renew:
-    Command: namecheap.ssl.renew
-    CertificateID: null
-    Years: 1
-    SSLType: null
+    reissue:
+        Command: namecheap.ssl.reissue
+        AdminAddress1: null
+        AdminCity: null
+        AdminCountry: null
+        AdminEmailAddress: null
+        AdminFirstName: null,
+        AdminJobTitle: null
+        AdminLastName: null
+        AdminPhone: null
+        AdminPostalCode: null
+        AdminStateProvince: null
+        ApproverEmail: null
+        BillingJobTitle: null
+        CertificateID: null
+        DNSDCValidation: 'False'
+        HTTPDCValidation: 'False'
+        TechJobTitle: null
+        WebServerType: apachessl
+        csr: null
 
-getinfo:
-    CertificateID: null,
-    Command: namecheap.ssl.getInfo
+    renew:
+        Command: namecheap.ssl.renew
+        CertificateID: null
+        Years: 1
+        SSLType: null
 
-create:
-    Command: namecheap.ssl.create
-    Type: PositiveSSL
-    Years: 1
+    getinfo:
+        CertificateID: null,
+        Command: namecheap.ssl.getInfo
 
-retry_dcv:
-    CertificateID: null,
-    Command: namecheap.ssl.resendApproverEmail
+    create:
+        Command: namecheap.ssl.create
+        Type: PositiveSSL
+        Years: 1
 
-revoke:
-    CertificateID: null
-    Command: namecheap.ssl.revokecertificate
-    CertificateType: null
+    retry_dcv:
+        CertificateID: null,
+        Command: namecheap.ssl.resendApproverEmail
 
-getlist:
-    Command: namecheap.ssl.getList
-    ListType: Active
-    SearchTerm: null
-    SortBy: Host_Name
-    PageSize: 100
+    revoke:
+        CertificateID: null
+        Command: namecheap.ssl.revokecertificate
+        CertificateType: null
 
-get_email_list:
-    Command: namecheap.ssl.getApproverEmailList
-    DomainName: null
-    CertificateType: null
+    getlist:
+        Command: namecheap.ssl.getList
+        ListType: Active
+        SearchTerm: null
+        SortBy: Host_Name
+        PageSize: 100
 
-headers:
-    Content-Type: application/x-www-form-urlencoded
+    get_email_list:
+        Command: namecheap.ssl.getApproverEmailList
+        DomainName: null
+        CertificateType: null

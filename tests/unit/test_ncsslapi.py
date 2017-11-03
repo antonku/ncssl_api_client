@@ -20,13 +20,13 @@ class CommandLineTest(TestCase):
         main()
         enable_key_encryption.assert_called_once()
 
-    @mock.patch('ncssl_api_client.config.manager.ConfigManager.get_api_sandbox_config')
+    @mock.patch('ncssl_api_client.config.manager.ConfigManager.get_api_sandbox_client_config')
     @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(command='getinfo', sandbox=True))
     def test_UsesSandboxApiConfig(self, mock_args, get_api_sandbox_config, controller_execute):
         main()
         get_api_sandbox_config.assert_called_once()
 
-    @mock.patch('ncssl_api_client.config.manager.ConfigManager.get_api_production_config')
+    @mock.patch('ncssl_api_client.config.manager.ConfigManager.get_api_production_client_config')
     @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(command='getinfo', sandbox=False))
     def test_UsesProductionApiConfig(self, mock_args, get_api_production_config, controller_execute):
         main()

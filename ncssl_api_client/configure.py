@@ -4,6 +4,7 @@ import ipgetter
 from shutil import copyfile
 from builtins import input
 from getpass import getpass
+from pprint import pprint
 
 BASE_DIR = 'ncsslapi'
 CERTS_DIR = 'certs'
@@ -40,14 +41,16 @@ def update_with_user_api_info(settings):
     client_ip = ipgetter.myip()
 
     for env in ['production', 'sandbox']:
-        settings['general'][env]['UserName'] = input('Enter Namecheap {} username: '.format(env))
-        settings['general'][env]['ApiUser'] = settings['general'][env]['UserName']
-        settings['general'][env]['ApiKey'] = getpass('Enter Namecheap {} api key: '.format(env))
-        settings['general'][env]['ClientIp'] = client_ip
+        pprint(settings['client']['general'])
+        settings['client']['general'][env]['UserName'] = input('Enter Namecheap {} username: '.format(env))
+        settings['client']['general'][env]['ApiUser'] = settings['client']['general'][env]['UserName']
+        settings['client']['general'][env]['ApiKey'] = getpass('Enter Namecheap {} api key: '.format(env))
+        # TODO: Allow user to overwrite IP address
+        settings['client']['general'][env]['ClientIp'] = client_ip
 
     admin_email = input('Enter email address certificates should be sent to: ')
     for command in ['activate', 'reissue']:
-        settings[command]['AdminEmailAddress'] = admin_email
+        settings['command'][command]['AdminEmailAddress'] = admin_email
 
     return settings
 

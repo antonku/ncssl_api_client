@@ -1,7 +1,7 @@
 import logging
 
 from ncssl_api_client.api.api_client import ApiClient
-from ncssl_api_client.config.api.api_sandbox_config import ApiSandboxConfig
+from ncssl_api_client.config.api.api_command_config import ApiCommandConfig
 from ncssl_api_client.crypto.csr_generator import CsrGenerator
 from ncssl_api_client.api.api_response import ApiResponse
 
@@ -21,10 +21,10 @@ class FlowController:
     OPERATION_NAME_GET_LIST = 'getlist'
     OPERATION_NAME_GET_EMAIL_LIST = 'get_email_list'
 
-    def __init__(self, api_config, user_params, api_client, csr_generator):
+    def __init__(self, api_command_config, user_params, api_client, csr_generator):
         """
-        :param api_config: Api settings
-        :type api_config: ApiProductionConfig|ApiSandboxConfig
+        :param api_command_config: Api settings
+        :type api_command_config: ApiCommandConfig
 
         :param user_params: User input
         :type user_params: dict
@@ -35,7 +35,7 @@ class FlowController:
         :param csr_generator: csr generator
         :type csr_generator: CsrGenerator
         """
-        self.api_config = api_config
+        self.api_config = api_command_config
         self.params = user_params
         self.api_client = api_client
         self.generator = csr_generator

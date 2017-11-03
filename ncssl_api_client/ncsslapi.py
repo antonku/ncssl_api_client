@@ -139,9 +139,9 @@ def main():
         crypto_config.enable_key_encryption()
 
     if arguments.sandbox is True:
-        api_config = ConfigManager.get_api_sandbox_config()
+        api_client_config = ConfigManager.get_api_sandbox_client_config()
     else:
-        api_config = ConfigManager.get_api_production_config()
+        api_client_config = ConfigManager.get_api_production_client_config()
 
     params = {k: v for (k, v) in vars(arguments).items() if k != 'command'}
     if (arguments.command == 'activate') and (arguments.new is True):
@@ -149,8 +149,10 @@ def main():
     else:
         command = arguments.command
 
-    api_client = ApiClient(api_config)
+    api_client = ApiClient(api_client_config)
     csr_generator = CsrGenerator(crypto_config)
 
-    controller = FlowController(api_config, params, api_client, csr_generator)
+    api_command_config = ConfigManager.get_api_command_config()
+
+    controller = FlowController(api_command_config, params, api_client, csr_generator)
     controller.execute(command)

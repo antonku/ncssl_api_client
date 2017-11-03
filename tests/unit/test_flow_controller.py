@@ -5,7 +5,7 @@ from ncssl_api_client.flow_controller import FlowController
 logging.disable(logging.CRITICAL)
 
 
-@mock.patch('ncssl_api_client.config.api.api_sandbox_config.ApiSandboxConfig')
+@mock.patch('ncssl_api_client.config.api.api_client_sandbox_config.ApiSandboxClientConfig')
 @mock.patch('ncssl_api_client.api.api_client.ApiClient')
 @mock.patch('ncssl_api_client.crypto.csr_generator.CsrGenerator')
 class FlowControllerTest(TestCase):

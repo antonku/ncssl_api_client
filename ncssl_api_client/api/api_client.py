@@ -3,8 +3,11 @@ import xmltodict
 import logging
 import coloredlogs
 import json
+
 from ncssl_api_client.utils.utils import Utils
 from ncssl_api_client.api.api_response import ApiResponse
+from ncssl_api_client.config.api.api_client_sandbox_config import ApiSandboxClientConfig
+from ncssl_api_client.config.api.api_client_production_config import ApiProductionClientConfig
 coloredlogs.install(level='INFO')
 logger = logging.getLogger(__name__)
 
@@ -41,7 +44,8 @@ class ApiClient:
         """
         Api client constructor
 
-        :param config: ApiProductionConfig|ApiSandboxConfig
+        :param config: Api client configuration
+        :type config: ApiProductionClientConfig|ApiSandboxClientConfig
         """
         self.config = config
 
@@ -55,5 +59,6 @@ class ApiClient:
         :return: api response
         :type: ApiResponse
         """
-        response = requests.post(self.config.get_api_url(), headers=self.config.get_headers(), data=params)
+        params.update(self.config.global_params)
+        response = requests.post(self.config.api_url, headers=self.config.headers, data=params)
         return response.text
