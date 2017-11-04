@@ -1,8 +1,4 @@
 import argparse
-from ncssl_api_client.api.api_client import ApiClient
-from ncssl_api_client.config.manager import ConfigManager
-from ncssl_api_client.crypto.csr_generator import CsrGenerator
-from ncssl_api_client.flow_controller import FlowController
 from ncssl_api_client.validator import Validator
 from ncssl_api_client.api.commands.invoker import Invoker
 
@@ -13,14 +9,14 @@ def get_args():
     subparsers = parser.add_subparsers(help='Available commands:', dest='command')
 
     # create
-    subparser_create = subparsers.add_parser(FlowController.OPERATION_NAME_CREATE, help="Purchases a certificate")
+    subparser_create = subparsers.add_parser(Invoker.COMMAND_NAME_CREATE, help="Purchases a certificate")
     subparser_create.add_argument("-t", "--type", help="Type", type=str, default='PositiveSSL', dest='Type')
     subparser_create.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
     subparser_create.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
 
     # activate
     subparser_activate = subparsers.add_parser(
-        FlowController.OPERATION_NAME_ACTIVATE,
+        Invoker.COMMAND_NAME_ACTIVATE,
         help="Generates CSR and activates a certificate with it"
     )
     subparser_activate.add_argument("-cn", "--common_name", help="Common Name to activate certificate for", type=str, required=True)
@@ -36,7 +32,7 @@ def get_args():
 
     # reissue
     subparser_reissue = subparsers.add_parser(
-        FlowController.OPERATION_NAME_REISSUE,
+        Invoker.COMMAND_NAME_REISSUE,
         help='Generates CSR and reissues a certificate with it'
     )
     subparser_reissue.add_argument("-cn", "--common_name", help="Common Name", type=str, required=True)
@@ -49,7 +45,7 @@ def get_args():
 
     # getinfo
     subparser_getinfo = subparsers.add_parser(
-        FlowController.OPERATION_NAME_GETINFO,
+        Invoker.COMMAND_NAME_GETINFO,
         help='Shows information for a particular certificate'
     )
     subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
@@ -58,7 +54,7 @@ def get_args():
 
     # retry dcv
     subparser_getinfo = subparsers.add_parser(
-        FlowController.OPERATION_NAME_RETRY_DCV,
+        Invoker.COMMAND_NAME_RETRY_DCV,
         help='Triggers domain control validation'
     )
     subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
@@ -66,7 +62,7 @@ def get_args():
 
     # renew
     subparser_renew = subparsers.add_parser(
-        FlowController.OPERATION_NAME_RENEW,
+        Invoker.COMMAND_NAME_RENEW,
         help='Purchases a renewal certificate'
     )
     subparser_renew.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
@@ -76,7 +72,7 @@ def get_args():
 
     # revoke
     subparser_revoke = subparsers.add_parser(
-        FlowController.OPERATION_NAME_REVOKE,
+        Invoker.COMMAND_NAME_REVOKE,
         help='Revokes a certificate'
     )
     subparser_revoke.add_argument("-id", "--cert_id", help="Certificate ID to revoke", dest='CertificateID', required=True)
@@ -85,7 +81,7 @@ def get_args():
 
     # getlist
     subparser_getlist = subparsers.add_parser(
-        FlowController.OPERATION_NAME_GET_LIST,
+        Invoker.COMMAND_NAME_GET_LIST,
         help='Shows list of SSL certificates in your account'
     )
     subparser_getlist.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
@@ -95,7 +91,7 @@ def get_args():
 
     # get email list
     subparser_get_email_list = subparsers.add_parser(
-        FlowController.OPERATION_NAME_GET_EMAIL_LIST,
+        Invoker.COMMAND_NAME_GET_EMAIL_LIST,
         help='Shows list of possible approval emails for a domain'
     )
     subparser_get_email_list.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
@@ -137,25 +133,3 @@ def main():
     invoker = Invoker(arguments)
     invoker.run()
 
-    # crypto_config = ConfigManager.get_crypto_config()
-    # if getattr(arguments, 'encrypt', False) is True:
-    #     crypto_config.enable_key_encryption()
-    #
-    # if arguments.sandbox is True:
-    #     api_client_config = ConfigManager.get_api_sandbox_client_config()
-    # else:
-    #     api_client_config = ConfigManager.get_api_production_client_config()
-    #
-    # params = {k: v for (k, v) in vars(arguments).items() if k != 'command'}
-    # if (arguments.command == 'activate') and (arguments.new is True):
-    #     command = FlowController.OPERATION_NAME_CREATE_AND_ACTIVATE
-    # else:
-    #     command = arguments.command
-    #
-    # api_client = ApiClient(api_client_config)
-    # csr_generator = CsrGenerator(crypto_config)
-    #
-    # api_command_config = ConfigManager.get_api_command_config()
-    #
-    # controller = FlowController(api_command_config, params, api_client, csr_generator)
-    # controller.execute(command)

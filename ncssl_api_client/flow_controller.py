@@ -9,17 +9,19 @@ logger = logging.getLogger(__name__)
 
 
 class FlowController:
+    # TODO: Remove this class
+    # TODO: consider to extract create and activate command
 
-    OPERATION_NAME_CREATE_AND_ACTIVATE = 'create_and_activate'
-    OPERATION_NAME_ACTIVATE = 'activate'
-    OPERATION_NAME_CREATE = 'create'
-    OPERATION_NAME_GETINFO = 'getinfo'
-    OPERATION_NAME_RETRY_DCV = 'retry_dcv'
-    OPERATION_NAME_REISSUE = 'reissue'
-    OPERATION_NAME_RENEW = 'renew'
-    OPERATION_NAME_REVOKE = 'revoke'
-    OPERATION_NAME_GET_LIST = 'getlist'
-    OPERATION_NAME_GET_EMAIL_LIST = 'get_email_list'
+    COMMAND_NAME_CREATE_AND_ACTIVATE = 'create_and_activate'
+    COMMAND_NAME_ACTIVATE = 'activate'
+    COMMAND_NAME_CREATE = 'create'
+    COMMAND_NAME_GETINFO = 'getinfo'
+    COMMAND_NAME_RETRY_DCV = 'retry_dcv'
+    COMMAND_NAME_REISSUE = 'reissue'
+    COMMAND_NAME_RENEW = 'renew'
+    COMMAND_NAME_REVOKE = 'revoke'
+    COMMAND_NAME_GET_LIST = 'getlist'
+    COMMAND_NAME_GET_EMAIL_LIST = 'get_email_list'
 
     def __init__(self, api_command_config, user_params, api_client, csr_generator):
         """

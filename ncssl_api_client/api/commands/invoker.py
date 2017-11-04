@@ -13,16 +13,27 @@ from ncssl_api_client.api.api_client import ApiClient
 
 class Invoker:
 
+    COMMAND_NAME_CREATE_AND_ACTIVATE = 'create_and_activate'  # TODO: Implement!
+    COMMAND_NAME_ACTIVATE = 'activate'
+    COMMAND_NAME_CREATE = 'create'
+    COMMAND_NAME_GETINFO = 'getinfo'
+    COMMAND_NAME_RETRY_DCV = 'retry_dcv'
+    COMMAND_NAME_REISSUE = 'reissue'
+    COMMAND_NAME_RENEW = 'renew'
+    COMMAND_NAME_REVOKE = 'revoke'
+    COMMAND_NAME_GET_LIST = 'getlist'
+    COMMAND_NAME_GET_EMAIL_LIST = 'get_email_list'
+
     command_map = {
-        'activate': {'configMethod': 'get_activate_params', 'class': ActivateCommand},
-        'reissue': {'configMethod': 'get_reissue_params', 'class': ReissueCommand},
-        'create': {'configMethod': 'get_create_params', 'class': CreateCommand},
-        'getinfo': {'configMethod': 'get_getinfo_params', 'class': GetInfoCommand},
-        'retry_dcv': {'configMethod': 'get_retry_dcv_params', 'class': RetryDcvCommand},
-        'renew': {'configMethod': 'get_renew_params', 'class': RenewCommand},
-        'revoke': {'configMethod': 'get_revoke_params', 'class': RevokeCommand},
-        'getlist': {'configMethod': 'get_getlist_params', 'class': GetListCommand},
-        'get_email_list': {'configMethod': 'get_email_list_params', 'class': GetEmailListCommand},
+        COMMAND_NAME_ACTIVATE: {'configMethod': 'get_activate_params', 'class': ActivateCommand},
+        COMMAND_NAME_REISSUE: {'configMethod': 'get_reissue_params', 'class': ReissueCommand},
+        COMMAND_NAME_CREATE: {'configMethod': 'get_create_params', 'class': CreateCommand},
+        COMMAND_NAME_GETINFO: {'configMethod': 'get_getinfo_params', 'class': GetInfoCommand},
+        COMMAND_NAME_RETRY_DCV: {'configMethod': 'get_retry_dcv_params', 'class': RetryDcvCommand},
+        COMMAND_NAME_RENEW: {'configMethod': 'get_renew_params', 'class': RenewCommand},
+        COMMAND_NAME_REVOKE: {'configMethod': 'get_revoke_params', 'class': RevokeCommand},
+        COMMAND_NAME_GET_LIST: {'configMethod': 'get_getlist_params', 'class': GetListCommand},
+        COMMAND_NAME_GET_EMAIL_LIST: {'configMethod': 'get_email_list_params', 'class': GetEmailListCommand},
     }
 
     def __init__(self, arguments):
