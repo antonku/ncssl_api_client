@@ -4,6 +4,7 @@ from ncssl_api_client.config.manager import ConfigManager
 from ncssl_api_client.crypto.csr_generator import CsrGenerator
 from ncssl_api_client.flow_controller import FlowController
 from ncssl_api_client.validator import Validator
+from ncssl_api_client.api.commands.invoker import Invoker
 
 
 def get_args():
@@ -133,26 +134,28 @@ def get_args():
 def main():
 
     arguments = get_args()
+    invoker = Invoker(arguments)
+    invoker.run()
 
-    crypto_config = ConfigManager.get_crypto_config()
-    if getattr(arguments, 'encrypt', False) is True:
-        crypto_config.enable_key_encryption()
-
-    if arguments.sandbox is True:
-        api_client_config = ConfigManager.get_api_sandbox_client_config()
-    else:
-        api_client_config = ConfigManager.get_api_production_client_config()
-
-    params = {k: v for (k, v) in vars(arguments).items() if k != 'command'}
-    if (arguments.command == 'activate') and (arguments.new is True):
-        command = FlowController.OPERATION_NAME_CREATE_AND_ACTIVATE
-    else:
-        command = arguments.command
-
-    api_client = ApiClient(api_client_config)
-    csr_generator = CsrGenerator(crypto_config)
-
-    api_command_config = ConfigManager.get_api_command_config()
-
-    controller = FlowController(api_command_config, params, api_client, csr_generator)
-    controller.execute(command)
+    # crypto_config = ConfigManager.get_crypto_config()
+    # if getattr(arguments, 'encrypt', False) is True:
+    #     crypto_config.enable_key_encryption()
+    #
+    # if arguments.sandbox is True:
+    #     api_client_config = ConfigManager.get_api_sandbox_client_config()
+    # else:
+    #     api_client_config = ConfigManager.get_api_production_client_config()
+    #
+    # params = {k: v for (k, v) in vars(arguments).items() if k != 'command'}
+    # if (arguments.command == 'activate') and (arguments.new is True):
+    #     command = FlowController.OPERATION_NAME_CREATE_AND_ACTIVATE
+    # else:
+    #     command = arguments.command
+    #
+    # api_client = ApiClient(api_client_config)
+    # csr_generator = CsrGenerator(crypto_config)
+    #
+    # api_command_config = ConfigManager.get_api_command_config()
+    #
+    # controller = FlowController(api_command_config, params, api_client, csr_generator)
+    # controller.execute(command)
