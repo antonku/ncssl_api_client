@@ -32,7 +32,7 @@ class Invoker:
 
     def run(self):
         command = self.get_command()
-        command.execute()
+        return command.execute()
 
     def get_command(self):
         params = {k: v for (k, v) in vars(self.arguments).items() if k != 'command'}

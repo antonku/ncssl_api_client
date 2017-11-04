@@ -1,20 +1,37 @@
-from ncssl_api_client.api.commands.activate_command import ActivateCommand
-from ncssl_api_client.api.commands.create_command import CreateCommand
-from ncssl_api_client.api.commands.get_email_list_command import GetEmailListCommand
-from ncssl_api_client.api.commands.get_info_command import GetInfoCommand
-from ncssl_api_client.api.commands.getlist_command import GetListCommand
-from ncssl_api_client.api.commands.reissue_command import ReissueCommand
-from ncssl_api_client.api.commands.renew_command import RenewCommand
-from ncssl_api_client.api.commands.revoke_command import RevokeCommand
-from ncssl_api_client.api.commands.retry_dcv_command import RetryDcvCommand
-from ncssl_api_client.config.manager import ConfigManager
-from ncssl_api_client.api.api_client import ApiClient
-
 import mock
 from unittest import TestCase
+from ncssl_api_client.api.commands.invoker import Invoker
+import argparse
 
 
+@mock.patch('ncssl_api_client.api.commands.invoker.ConfigManager')
+@mock.patch('ncssl_api_client.api.commands.invoker.ApiClient')
 class InvokerTest(TestCase):
-    # TODO: write tests
-    pass
+
+    def test_executes_command(self, config_manager_mock, api_client_mock):
+
+        mock.MagicMock.execute = lambda x: 'executed'
+        Invoker.command_map = {'mock_command': {'configMethod': 'get_test_params', 'class': mock.MagicMock}}
+        arguments_mock = argparse.Namespace(command='mock_command', sandbox=True)
+        invoker = Invoker(arguments_mock)
+        result = invoker.run()
+        self.assertEqual(result, 'executed')
+
+    def test_uses_api_sandbox_client_config(self, api_client_mock, config_manager_mock):
+
+        mock.MagicMock.execute = lambda x: 'executed'
+        Invoker.command_map = {'mock_command': {'configMethod': 'get_test_params', 'class': mock.MagicMock}}
+        arguments_mock = argparse.Namespace(command='mock_command', sandbox=True)
+        invoker = Invoker(arguments_mock)
+        invoker.run()
+        config_manager_mock.get_api_sandbox_client_config.assert_called_once()
+
+    def test_uses_api_production_client_config(self, api_client_mock, config_manager_mock):
+
+        mock.MagicMock.execute = lambda x: 'executed'
+        Invoker.command_map = {'mock_command': {'configMethod': 'get_test_params', 'class': mock.MagicMock}}
+        arguments_mock = argparse.Namespace(command='mock_command', sandbox=False)
+        invoker = Invoker(arguments_mock)
+        invoker.run()
+        config_manager_mock.get_api_production_client_config.assert_called_once()
 
