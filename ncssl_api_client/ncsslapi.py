@@ -1,102 +1,30 @@
 import argparse
 from ncssl_api_client.validator import Validator
 from ncssl_api_client.api.commands.invoker import Invoker
+from ncssl_api_client.console.parsers.create_parser import CreateParser
+from ncssl_api_client.console.parsers.activate_parser import ActivateParser
+from ncssl_api_client.console.parsers.get_email_list_parser import GetEmailListParser
+from ncssl_api_client.console.parsers.get_list_parser import GetListParser
+from ncssl_api_client.console.parsers.getinfo_parser import GetInfoParser
+from ncssl_api_client.console.parsers.reissue_parser import ReissueParser
+from ncssl_api_client.console.parsers.renew_parser import RenewParser
+from ncssl_api_client.console.parsers.retry_dcv_parser import RetryDcvParser
+from ncssl_api_client.console.parsers.revoke_parser import RevokeParser
 
 
 def get_args():
     parser = argparse.ArgumentParser()
 
     subparsers = parser.add_subparsers(help='Available commands:', dest='command')
-
-    # create
-    subparser_create = subparsers.add_parser(Invoker.COMMAND_NAME_CREATE, help="Purchases a certificate")
-    subparser_create.add_argument("-t", "--type", help="Type", type=str, default='PositiveSSL', dest='Type')
-    subparser_create.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
-    subparser_create.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
-
-    # activate
-    subparser_activate = subparsers.add_parser(
-        Invoker.COMMAND_NAME_ACTIVATE,
-        help="Generates CSR and activates a certificate with it"
-    )
-    subparser_activate.add_argument("-cn", "--common_name", help="Common Name to activate certificate for", type=str, required=True)
-    subparser_activate.add_argument("-sb", "--sandbox", help="Whether to use sandbox api", action='store_true')
-    subparser_activate.add_argument("-enc", "--encrypt", help="Whether to encrypt private key", action='store_true')
-    subparser_activate.add_argument("-e", "--email", help="Approver Email", type=str, dest='ApproverEmail')
-    subparser_activate.add_argument("-new", "--new", help="Purchase new cert before activation", action='store_true')
-    subparser_activate.add_argument("-id", "--cert_id", help="Certificate ID to activate", dest='CertificateID')
-    subparser_activate.add_argument("-http", "--http_dcv", help="Use HTTP validation", action='store_true', dest='HTTPDCValidation')
-    subparser_activate.add_argument("-dns", "--dns_dcv", help="Use DNS validation", action='store_true', dest='DNSDCValidation')
-    subparser_activate.add_argument("-t", "--type", help="Certificate Type", type=str, default='PositiveSSL', dest='Type')
-    subparser_activate.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
-
-    # reissue
-    subparser_reissue = subparsers.add_parser(
-        Invoker.COMMAND_NAME_REISSUE,
-        help='Generates CSR and reissues a certificate with it'
-    )
-    subparser_reissue.add_argument("-cn", "--common_name", help="Common Name", type=str, required=True)
-    subparser_reissue.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
-    subparser_reissue.add_argument("-enc", "--encrypt", help="Whether to encrypt private key", action='store_true')
-    subparser_reissue.add_argument("-e", "--email", help="Approver Email", type=str, dest='ApproverEmail')
-    subparser_reissue.add_argument("-id", "--cert_id", help="Certificate ID to activate", dest='CertificateID', required=True)
-    subparser_reissue.add_argument("-http", "--http_dcv", help="Use HTTP validation", action='store_true', dest='HTTPDCValidation')
-    subparser_reissue.add_argument("-dns", "--dns_dcv", help="Use DNS validation", action='store_true', dest='DNSDCValidation')
-
-    # getinfo
-    subparser_getinfo = subparsers.add_parser(
-        Invoker.COMMAND_NAME_GETINFO,
-        help='Shows information for a particular certificate'
-    )
-    subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
-    subparser_getinfo.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
-    subparser_getinfo.add_argument("-rc", "--return_certs", help="Return certificates in response", action='store_true', dest='ReturnCertificate')
-
-    # retry dcv
-    subparser_getinfo = subparsers.add_parser(
-        Invoker.COMMAND_NAME_RETRY_DCV,
-        help='Triggers domain control validation'
-    )
-    subparser_getinfo.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
-    subparser_getinfo.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
-
-    # renew
-    subparser_renew = subparsers.add_parser(
-        Invoker.COMMAND_NAME_RENEW,
-        help='Purchases a renewal certificate'
-    )
-    subparser_renew.add_argument("-id", "--cert_id", help="Certificate ID to get info for", dest='CertificateID', required=True)
-    subparser_renew.add_argument("-t", "--type", help="Type", type=str, default='PositiveSSL', dest='SSLType', required=True)
-    subparser_renew.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
-    subparser_renew.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
-
-    # revoke
-    subparser_revoke = subparsers.add_parser(
-        Invoker.COMMAND_NAME_REVOKE,
-        help='Revokes a certificate'
-    )
-    subparser_revoke.add_argument("-id", "--cert_id", help="Certificate ID to revoke", dest='CertificateID', required=True)
-    subparser_revoke.add_argument("-t", "--type", help="Type", type=str, dest='CertificateType', required=True)
-    subparser_revoke.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
-
-    # getlist
-    subparser_getlist = subparsers.add_parser(
-        Invoker.COMMAND_NAME_GET_LIST,
-        help='Shows list of SSL certificates in your account'
-    )
-    subparser_getlist.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
-    subparser_getlist.add_argument("-kw", "--keyword", help="Key word", type=str, dest='SearchTerm')
-    subparser_getlist.add_argument("-f", "--filter", help="Filter", type=str, dest='ListType')
-    subparser_getlist.add_argument("-s", "--sort_by", help="Sort by", type=str, dest='SortBy')
-
-    # get email list
-    subparser_get_email_list = subparsers.add_parser(
-        Invoker.COMMAND_NAME_GET_EMAIL_LIST,
-        help='Shows list of possible approval emails for a domain'
-    )
-    subparser_get_email_list.add_argument("-sb", "--sandbox", help="Sandbox", action='store_true')
-    subparser_get_email_list.add_argument("-t", "--type", help="Certificate type", type=str, dest='CertificateType', required=True)
-    subparser_get_email_list.add_argument("-d", "--domain", help="Domain name", type=str, dest='DomainName', required=True)
+    CreateParser().add_parser(subparsers)
+    ActivateParser().add_parser(subparsers)
+    GetEmailListParser().add_parser(subparsers)
+    GetListParser().add_parser(subparsers)
+    GetInfoParser().add_parser(subparsers)
+    ReissueParser().add_parser(subparsers)
+    RenewParser().add_parser(subparsers)
+    RetryDcvParser().add_parser(subparsers)
+    RevokeParser().add_parser(subparsers)
 
     args = parser.parse_args()
 
