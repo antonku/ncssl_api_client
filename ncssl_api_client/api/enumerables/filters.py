@@ -14,3 +14,6 @@ class Filters(Enum):
     CANCELLED = 'Cancelled'
     NEWPURCHASE = 'NewPurchase'
     NEWRENEWAL = 'NewRenewal'
+
+    def __str__(self):
+        return self.value

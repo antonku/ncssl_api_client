@@ -16,3 +16,6 @@ class CertificateTypes(Enum):
     Multi_Domain_SSL = 'Multi Domain SSL'
     PositiveSSL_Multi_Domain = 'PositiveSSL Multi Domain'
     Unified_Communications = 'Unified Communications'
+
+    def __str__(self):
+        return self.value

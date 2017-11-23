@@ -11,3 +11,6 @@ class Sorters(Enum):
     EXPIREDATETIME_DESC = 'EXPIREDATETIME_DESC'
     HOST_NAME = 'Host_Name'
     HOST_NAME_DESC = 'Host_Name_DESC'
+
+    def __str__(self):
+        return self.value
