@@ -1,6 +1,6 @@
 from ncssl_api_client.api.commands.abstract_command import AbstractCommand
-from ncssl_api_client.crypto.csr_generator import CsrGenerator
 from ncssl_api_client.config.manager import ConfigManager
+from ncssl_api_client.services.crypto.csr_generator import CsrGenerator
 
 
 class ActivateCommand(AbstractCommand):

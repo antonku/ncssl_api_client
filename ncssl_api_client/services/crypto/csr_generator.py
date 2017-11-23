@@ -1,7 +1,7 @@
 import subprocess
 
 from ncssl_api_client.config.crypto.crypto_config import CryptoConfig
-from ncssl_api_client.utils.utils import Utils
+from ncssl_api_client.services.utils.utils import Utils
 
 
 class CsrGenerator:

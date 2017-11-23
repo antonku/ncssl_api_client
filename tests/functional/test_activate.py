@@ -5,7 +5,7 @@ from ncssl_api_client.ncsslapi import main
 
 
 @mock.patch('ncssl_api_client.config.manager.ConfigManager.get_crypto_config')
-@mock.patch('ncssl_api_client.crypto.csr_generator.CsrGenerator.generate_csr')
+@mock.patch('ncssl_api_client.services.crypto.csr_generator.CsrGenerator.generate_csr')
 @mock.patch('ncssl_api_client.api.api_client.ApiClient.send_call', return_value='test api response')
 @mock.patch('ncssl_api_client.config.manager.ConfigManager.get_api_command_config')
 @mock.patch('ncssl_api_client.config.manager.ConfigManager.get_api_sandbox_client_config')
