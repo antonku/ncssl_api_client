@@ -1,7 +1,7 @@
 import unittest
 import mock
 import sys
-from ncssl_api_client.ncsslapi import main
+from ncssl_api_client.__main__ import main
 
 
 @mock.patch('ncssl_api_client.config.manager.ConfigManager.get_crypto_config')

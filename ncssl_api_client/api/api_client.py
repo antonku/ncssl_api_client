@@ -30,10 +30,15 @@ def return_as_api_response(method):
 
 def api_logger(method):
     def wrapper(*args):
+        return_as_json = args[-1].get('json', False)
+        args[-1].pop('json', None)
         api_response = method(*args)
         if api_response.is_successful():
             command_response = api_response.get_command_response()
-            logger.info(Utils.pretty_output(command_response))
+            if return_as_json is False:
+                logger.info(Utils.pretty_output(command_response))
+            else:
+                logger.info(json.dumps(command_response, indent=2))
         else:
             logger.error(json.dumps(api_response.get_error(), indent=2))
         return api_response

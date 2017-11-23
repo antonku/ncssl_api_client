@@ -34,4 +34,3 @@ def main():
     arguments = get_args(sys.argv[1:])
     invoker = Invoker(arguments)
     return invoker.run()
-
