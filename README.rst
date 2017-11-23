@@ -66,10 +66,6 @@ Generates CSR and activates a certificate with it
 
 >>> ncsslapi activate -id 1111111 -cn test.example.com -e admin@example.com
 
-Should you want to create a certificate and activate it in a single command, simply add ``-new`` flag to the command
-
->>> ncsslapi activate -new -cn test.example.com -e admin@example.com
-
 There are three possible options for domain control validation (DCV):
 
 * Email DCV: ``ncsslapi activate -id 1111111 -cn test.example.com -e admin@example.com``
@@ -85,8 +81,6 @@ There are three possible options for domain control validation (DCV):
 | -cn      | --common_name| Namecheap certificate ID to activate. Should be skipped if ``-new`` parameter is specified              | Yes           |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
 | -id      | --id         | Namecheap certificate ID to activate. Should be skipped if ``-new`` parameter is specified              | Conditionally |
-+----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
-| -new     | --new        | If added, certificate will be purchased prior to activation. This argument must be used without a value | Conditionally |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
 | -e       | --email      | Approver email address. Must be specified unless DNS or HTTP dcv is preferred                           | Conditionally |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
