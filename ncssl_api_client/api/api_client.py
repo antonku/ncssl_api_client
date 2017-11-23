@@ -1,6 +1,6 @@
 import json
 import logging
-
+import sys
 import coloredlogs
 import requests
 import xmltodict
@@ -10,7 +10,7 @@ from ncssl_api_client.config.api.api_client_production_config import ApiProducti
 from ncssl_api_client.config.api.api_client_sandbox_config import ApiSandboxClientConfig
 from ncssl_api_client.services.utils.utils import Utils
 
-coloredlogs.install(level='INFO')
+coloredlogs.install(level='INFO', stream=sys.stdout)
 logger = logging.getLogger(__name__)
 
 

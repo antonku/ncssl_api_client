@@ -29,7 +29,7 @@ setup(name='ncssl-api-client',
           'License :: OSI Approved :: MIT License',
       ],
       entry_points={
-          'console_scripts': ['ncsslapi=ncssl_api_client.__main__:main'],
+          'console_scripts': ['ncsslapi=ncssl_api_client.__main__:main_cli_wrapper'],
       },
       test_suite='tests',
       include_package_data=True,

@@ -30,7 +30,14 @@ def get_args(args):
 
 
 def main():
-
     arguments = get_args(sys.argv[1:])
     invoker = Invoker(arguments)
     return invoker.run()
+
+
+def main_cli_wrapper():
+    result = main()
+    if result.is_successful():
+        exit(0)
+    else:
+        exit(1)
