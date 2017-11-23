@@ -39,14 +39,17 @@ def setup_layout():
 def update_with_user_api_info(settings):
 
     client_ip = ipgetter.myip()
+    client_ip_input = input('Your external IP address seems to be [{}].\n'
+                            'press <Enter> if it\'s ok, otherwise, '
+                            'enter the correct one manually: '.format(client_ip))
+    if client_ip_input:
+        client_ip = client_ip_input
 
     for env in ['production', 'sandbox']:
-        pprint(settings['client']['general'])
+        settings['client']['general'][env]['ClientIp'] = client_ip
         settings['client']['general'][env]['UserName'] = input('Enter Namecheap {} username: '.format(env))
         settings['client']['general'][env]['ApiUser'] = settings['client']['general'][env]['UserName']
         settings['client']['general'][env]['ApiKey'] = getpass('Enter Namecheap {} api key: '.format(env))
-        # TODO: Allow user to overwrite IP address
-        settings['client']['general'][env]['ClientIp'] = client_ip
 
     admin_email = input('Enter email address certificates should be sent to: ')
     for command in ['activate', 'reissue']:
