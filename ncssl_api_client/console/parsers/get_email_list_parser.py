@@ -1,5 +1,6 @@
 from ncssl_api_client.console.parsers.abstract_parser import AbstractParser
 from ncssl_api_client.api.commands.invoker import Invoker
+from ncssl_api_client.api.enumerables.certificate_types import CertificateTypes
 
 
 class GetEmailListParser(AbstractParser):
@@ -10,5 +11,5 @@ class GetEmailListParser(AbstractParser):
 
     def add_parser(self, subparsers):
         super(GetEmailListParser, self).add_parser(subparsers)
-        self.parser.add_argument("-t", "--type", help="Certificate type", type=str, dest='CertificateType', required=True)
+        self.parser.add_argument("-t", "--type", help="Certificate type", type=CertificateTypes, dest='CertificateType', required=True, choices=list(CertificateTypes))
         self.parser.add_argument("-d", "--domain", help="Domain name", type=str, dest='DomainName', required=True)

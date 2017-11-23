@@ -1,11 +1,12 @@
 from ncssl_api_client.console.parsers.abstract_parser import AbstractParser
 from ncssl_api_client.api.commands.invoker import Invoker
+from ncssl_api_client.api.enumerables.certificate_types import CertificateTypes
 
 
 class ActivateParser(AbstractParser):
 
     def __init__(self):
-        self.name = Invoker.COMMAND_NAME_ACTIVATE,
+        self.name = Invoker.COMMAND_NAME_ACTIVATE
         self.help = "Generates CSR and activates a certificate with it"
 
     def add_parser(self, subparsers):
@@ -17,6 +18,6 @@ class ActivateParser(AbstractParser):
         self.parser.add_argument("-id", "--cert_id", help="Certificate ID to activate", dest='CertificateID')
         self.parser.add_argument("-http", "--http_dcv", help="Use HTTP validation", action='store_true', dest='HTTPDCValidation')
         self.parser.add_argument("-dns", "--dns_dcv", help="Use DNS validation", action='store_true', dest='DNSDCValidation')
-        self.parser.add_argument("-t", "--type", help="Certificate Type", type=str, default='PositiveSSL', dest='Type')
+        self.parser.add_argument("-t", "--type", help="Certificate Type", type=CertificateTypes, default='PositiveSSL', dest='Type', choices=list(CertificateTypes))
         self.parser.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
 

@@ -3,14 +3,14 @@ from ncssl_api_client.config.api import settings
 
 class ApiCommandConfig:
     def __init__(self):
-        self.create_params       = settings.command['create']
-        self.activate_params     = settings.command['activate']
-        self.reissue_params      = settings.command['reissue']
-        self.getinfo_params      = settings.command['getinfo']
-        self.retry_dcv_params    = settings.command['retry_dcv']
-        self.renew_params        = settings.command['renew']
-        self.revoke_params       = settings.command['revoke']
-        self.getlist_params      = settings.command['getlist']
+        self.create_params = settings.command['create']
+        self.activate_params = settings.command['activate']
+        self.reissue_params = settings.command['reissue']
+        self.getinfo_params = settings.command['getinfo']
+        self.retry_dcv_params = settings.command['retry_dcv']
+        self.renew_params = settings.command['renew']
+        self.revoke_params = settings.command['revoke']
+        self.getlist_params = settings.command['getlist']
         self.getemaillist_params = settings.command['get_email_list']
 
     def get_create_params(self):
