@@ -40,7 +40,7 @@ def update_with_user_api_info(settings):
 
     client_ip = ipgetter.myip()
     client_ip_input = input('Your external IP address seems to be [{}].\n'
-                            'press <Enter> if it\'s ok, otherwise, '
+                            'Press <Enter> if it\'s ok, otherwise, '
                             'enter the correct one manually: '.format(client_ip))
     if client_ip_input:
         client_ip = client_ip_input
