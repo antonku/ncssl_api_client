@@ -46,3 +46,15 @@ class ReissueParserTest(unittest.TestCase):
                 '-t', 'TEST',
                 '-y', '1'
             ])
+
+    def test_error_mutually_exclusive_args(self):
+        with self.assertRaises(SystemExit):
+            self.parser.parse_args([
+                'reissue',
+                '-cn', 'example.com',
+                '-e', 'example@example.com',
+                '-dns',
+                '-id', '0000000',
+                '-t', 'PositiveSSL',
+                '-y', '1'
+            ])

@@ -26,20 +26,7 @@ def get_args(args):
     RetryDcvParser().add_parser(subparsers)
     RevokeParser().add_parser(subparsers)
 
-    args = parser.parse_args(args)
-
-    # validation
-    # TODO: move it elsewhere
-    # TODO: move this file into console dir
-    if args.command == 'activate':
-        if (not getattr(args, 'CertificateID', False)) and (not (getattr(args, 'new', False))):
-            parser.error('You must either specify certificate id or "-new" prefix for activate operation')
-
-    if (args.command == 'activate') or (args.command == 'reissue'):
-        if (not args.HTTPDCValidation) and (not args.DNSDCValidation) and (not (getattr(args, 'ApproverEmail', False))):
-            parser.error('You must specify either "http_dcv", "cname_dcv" or approver email address')
-    
-    return args
+    return parser.parse_args(args)
 
 
 def main():

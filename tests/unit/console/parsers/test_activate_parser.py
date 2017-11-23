@@ -46,3 +46,15 @@ class ActivateParserTest(unittest.TestCase):
                 '-t', 'TEST',
                 '-y', '1'
             ])
+
+    def test_error_mutually_exclusive_args(self):
+        with self.assertRaises(SystemExit):
+            self.parser.parse_args([
+                'activate',
+                '-cn', 'example.com',
+                '-e', 'example@example.com',
+                '-http',
+                '-id', '0000000',
+                '-t', 'PositiveSSL',
+                '-y', '1'
+            ])
