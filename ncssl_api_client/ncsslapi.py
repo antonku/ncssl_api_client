@@ -1,5 +1,5 @@
 import argparse
-from ncssl_api_client.validator import Validator
+import sys
 from ncssl_api_client.api.commands.invoker import Invoker
 from ncssl_api_client.console.parsers.create_parser import CreateParser
 from ncssl_api_client.console.parsers.activate_parser import ActivateParser
@@ -12,7 +12,7 @@ from ncssl_api_client.console.parsers.retry_dcv_parser import RetryDcvParser
 from ncssl_api_client.console.parsers.revoke_parser import RevokeParser
 
 
-def get_args():
+def get_args(args):
     parser = argparse.ArgumentParser()
 
     subparsers = parser.add_subparsers(help='Available commands:', dest='command')
@@ -26,9 +26,11 @@ def get_args():
     RetryDcvParser().add_parser(subparsers)
     RevokeParser().add_parser(subparsers)
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     # validation
+    # TODO: move it elsewhere
+    # TODO: move this file into console dir
     if args.command == 'activate':
         if (not getattr(args, 'CertificateID', False)) and (not (getattr(args, 'new', False))):
             parser.error('You must either specify certificate id or "-new" prefix for activate operation')
@@ -36,28 +38,13 @@ def get_args():
     if (args.command == 'activate') or (args.command == 'reissue'):
         if (not args.HTTPDCValidation) and (not args.DNSDCValidation) and (not (getattr(args, 'ApproverEmail', False))):
             parser.error('You must specify either "http_dcv", "cname_dcv" or approver email address')
-
-    try:
-        sorter_type = getattr(args, 'SortBy', None)
-        if sorter_type:
-            args.SortBy = Validator.validate_sorter(sorter_type)
-
-        filter_type = getattr(args, 'ListType', None)
-        if filter_type:
-            args.ListType = Validator.validate_filter(filter_type)
-
-        certificate_type = getattr(args, 'Type', None) or getattr(args, 'CertificateType', None)
-        if certificate_type:
-            args.ListType = Validator.validate_certificate_type(certificate_type)
-    except ValueError as e:
-        parser.error(str(e))
     
     return args
 
 
 def main():
 
-    arguments = get_args()
+    arguments = get_args(sys.argv[1:])
     invoker = Invoker(arguments)
-    invoker.run()
+    return invoker.run()
 
