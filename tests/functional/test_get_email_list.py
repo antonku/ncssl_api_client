@@ -10,6 +10,6 @@ from ncssl_api_client.__main__ import main
 class GetEmailListTest(unittest.TestCase):
 
     def test_success_flow(self, api_config_mock, command_config_mock, api_client_mock):
-        with mock.patch('sys.argv', ['ncsslapi', 'get_email_list', '-t', 'PositiveSSL', '-d', 'example.com']):
+        with mock.patch('sys.argv', ['ncsslapi', 'get_email_list', '-t', 'PositiveSSL', '-d', 'example.com', '-sb']):
             self.assertEqual(main(), 'test api response')
 
