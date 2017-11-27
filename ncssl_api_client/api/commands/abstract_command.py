@@ -1,7 +1,8 @@
 from abc import ABCMeta
+from future.utils import with_metaclass
 
 
-class AbstractCommand(metaclass=ABCMeta):
+class AbstractCommand(with_metaclass(ABCMeta)):
 
     def __init__(self, command_config, api_client):
         self.command_config = command_config

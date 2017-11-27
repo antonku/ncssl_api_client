@@ -1,4 +1,8 @@
-class AbstractParser:
+from abc import ABCMeta
+from future.utils import with_metaclass
+
+
+class AbstractParser(with_metaclass(ABCMeta)):
 
     def add_parser(self, subparsers):
         self.parser = subparsers.add_parser(self.name, help=self.help)
