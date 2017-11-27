@@ -7,7 +7,11 @@ NC SSL API Client
 .. image:: https://badge.fury.io/py/ncssl-api-client.svg
     :target: https://badge.fury.io/py/ncssl-api-client
 
-Command line client for communication with Namecheap SSL Api
+Command line client for communication with Namecheap SSL API
+
+Warning
+-----------------
+**This package is currently in alpha status. Use on your own risk!**
 
 Installation
 ------------
