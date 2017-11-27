@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(name='ncssl-api-client',
       version='0.1',
       description='Command line interface for Namecheap SSL API',
-      url='TO BE DEFINED',
+      url='https://github.com/antonku/ncssl_api_client',
       author='Anton Kudinov',
       author_email='anton.ku.nc@gmail.com',
       license='MIT',
