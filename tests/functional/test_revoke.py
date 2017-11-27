@@ -1,6 +1,5 @@
 import unittest
 import mock
-import sys
 from ncssl_api_client.__main__ import main
 
 
@@ -10,8 +9,5 @@ from ncssl_api_client.__main__ import main
 class RevokeTest(unittest.TestCase):
 
     def test_success_flow(self, api_config_mock, command_config_mock, api_client_mock):
-        sys.argv.extend(['revoke', '-t', 'PositiveSSL', '-id', '000000', '-sb'])
-        self.assertEqual(main(), 'test api response')
-
-    def tearDown(self):
-        del sys.argv[1:]
+        with mock.patch('sys.argv', ['ncsslapi', 'revoke', '-t', 'PositiveSSL', '-id', '000000', '-sb']):
+            self.assertEqual(main(), 'test api response')

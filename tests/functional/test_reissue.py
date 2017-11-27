@@ -1,6 +1,5 @@
 import unittest
 import mock
-import sys
 from ncssl_api_client.__main__ import main
 
 
@@ -12,8 +11,5 @@ from ncssl_api_client.__main__ import main
 class ReissueTest(unittest.TestCase):
 
     def test_success_flow(self, api_config_mock, command_config_mock, api_client_mock, generator, crypto_config_mock):
-        sys.argv.extend(['reissue', '-id', '00000', '-cn', 'example.com', '-http'])
-        self.assertEqual(main(), 'test api response')
-
-    def tearDown(self):
-        del sys.argv[1:]
+        with mock.patch('sys.argv', ['ncsslapi', 'reissue', '-id', '00000', '-cn', 'example.com', '-http']):
+            self.assertEqual(main(), 'test api response')
