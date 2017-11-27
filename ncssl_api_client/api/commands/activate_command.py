@@ -18,6 +18,6 @@ class ActivateCommand(AbstractCommand):
 
     def get_crypto_config(self):
         crypto_config = ConfigManager.get_crypto_config()
-        if getattr(self.command_config, 'encrypt', False) is True:
+        if self.command_config.get('encrypt', False) is True:
             crypto_config.enable_key_encryption()
         return crypto_config
