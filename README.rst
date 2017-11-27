@@ -2,6 +2,8 @@ NC SSL API Client
 -----------------
 .. image:: https://travis-ci.org/antonku/ncssl_api_client.svg?branch=master
     :target: https://travis-ci.org/antonku/ncssl_api_client
+.. image:: https://coveralls.io/repos/github/antonku/ncssl_api_client/badge.svg?branch=master
+    :target: https://coveralls.io/github/antonku/ncssl_api_client?branch=master
 
 Command line client for communication with Namecheap SSL Api
 
