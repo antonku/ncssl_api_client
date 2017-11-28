@@ -20,7 +20,7 @@ Installation
 General usage example
 ---------------------
 
->>> ncsslapi [command_name] [command_args] [--sandbox]
+>>> ncsslapi [command_name] [command_args]
 
 On the first run you will be requested to enter some general information required to make an api call.
 This information will be stored in ``~/ncsslapi/config`` as yaml and can be easily edited.
@@ -32,7 +32,7 @@ Environments
 This tool can be used in two environments:
 
 * production (default)
-* sandbox (add ``--sandbox`` flag to a command)
+* sandbox (add ``--sandbox/-sb`` flag to a command)
 
 Available Commands
 ------------------
@@ -206,7 +206,7 @@ _______
 Shows list of SSL certificates in your Namecheap account
 
 >>> ncsslapi getlist -kw
->>> ncsslapi getlist -kw example.com -f ACTIVE -s PURCHASEDATE
+>>> ncsslapi getlist -kw example.com -f Active -s PURCHASEDATE
 
 **Arguments**
 
