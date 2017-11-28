@@ -29,8 +29,8 @@ class Utils:
             os.makedirs(dir_path)
             return True
         except EnvironmentError:  # FileExistsError
-            answer = input('\nDirectory "{}" already exists. Do you want to overwrite it contents? (Y/N) '.format(dir_path))
-            if answer.lower() == 'yes' or answer.lower() == 'y':
+            answer = input('\nDirectory "{}" already exists. Do you want to overwrite it contents? (Y/n) '.format(dir_path))
+            if answer.lower() == 'yes' or answer.lower() == 'y' or answer.strip() == '':
                 return True
             return False
 
@@ -81,4 +81,3 @@ class Utils:
 
         json_data = json.loads(json.dumps(output_data))
         return yaml.safe_dump(json_data, indent=2, allow_unicode=True, default_flow_style=False, width=120, default_style='', explicit_start=True)
-
