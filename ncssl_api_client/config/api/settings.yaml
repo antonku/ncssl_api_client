@@ -87,7 +87,7 @@ command:
 
     getlist:
         Command: namecheap.ssl.getList
-        ListType: Active
+        ListType: ALL
         SearchTerm: null
         SortBy: Host_Name
         PageSize: 100
