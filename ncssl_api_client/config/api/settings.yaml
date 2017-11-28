@@ -25,7 +25,7 @@ command:
         AdminCity: null
         AdminCountry: null
         AdminEmailAddress: null
-        AdminFirstName: null,
+        AdminFirstName: null
         AdminJobTitle: null
         AdminLastName: null
         AdminPhone: null
@@ -39,6 +39,8 @@ command:
         TechJobTitle: null
         WebServerType: apachessl
         csr: null
+        DNSNames: null
+        DNSApproverEmails: null
 
     reissue:
         Command: namecheap.ssl.reissue
@@ -46,7 +48,7 @@ command:
         AdminCity: null
         AdminCountry: null
         AdminEmailAddress: null
-        AdminFirstName: null,
+        AdminFirstName: null
         AdminJobTitle: null
         AdminLastName: null
         AdminPhone: null
@@ -60,6 +62,8 @@ command:
         TechJobTitle: null
         WebServerType: apachessl
         csr: null
+        DNSNames: null
+        DNSApproverEmails: null
 
     renew:
         Command: namecheap.ssl.renew
@@ -68,7 +72,7 @@ command:
         SSLType: null
 
     getinfo:
-        CertificateID: null,
+        CertificateID: null
         Command: namecheap.ssl.getInfo
 
     create:
@@ -77,7 +81,7 @@ command:
         Years: 1
 
     retry_dcv:
-        CertificateID: null,
+        CertificateID: null
         Command: namecheap.ssl.resendApproverEmail
 
     revoke:
