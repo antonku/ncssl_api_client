@@ -278,7 +278,3 @@ ___________
 * Cancelled
 * NewPurchase
 * NewRenewal
-
-**@TODO**
-
-* Add MDC support
