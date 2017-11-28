@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='ncssl-api-client',
-      version='0.2',
+      version='0.3',
       description='Command line interface for Namecheap SSL API',
       url='https://github.com/antonku/ncssl_api_client',
       author='Anton Kudinov',
