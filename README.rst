@@ -90,6 +90,8 @@ There are three possible options for domain control validation (DCV):
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
 | -cn      | --common_name| Namecheap certificate ID to activate. Should be skipped if ``-new`` parameter is specified              | Yes           |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
+| -t       | --type       | Certificate Type. See list of available options in the dedicated section                                | Yes           |
++----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
 | -id      | --id         | Namecheap certificate ID to activate. Should be skipped if ``-new`` parameter is specified              | Conditionally |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
 | -e       | --email      | Approver email address. Must be specified unless DNS or HTTP dcv is preferred                           | Conditionally |
@@ -98,9 +100,11 @@ There are three possible options for domain control validation (DCV):
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
 | -dns     | --dns_dcv    | Sets domain control validation to DNS (CNAME) method. This argument must be used without a value        | Conditionally |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
-| -enc     | --ecnrypt    | If set, private key will be encrypted with a passphrase. This argument must be used without a value     | No            |
+| -sans    | --sans       | Additional Domains to activate certificate for                                                          | No            |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
-| -t       | --type       | Certificate Type. See list of available options in the dedicated section                                | Yes           |
+| -sans_e  | --sans_emails| A comma-separated list of approver emails for additional domains                                        | No            |
++----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
+| -enc     | --encrypt    | If set, private key will be encrypted with a passphrase. This argument must be used without a value     | No            |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
 | -y       | --years      | The number of year to purchase certificate for. Default is 1.                                           | No            |
 +----------+--------------+---------------------------------------------------------------------------------------------------------+---------------+
@@ -130,7 +134,11 @@ Generates CSR and reissues a certificate with it
 +----------+---------------+-----------------------------------------------------------------------------------------------------+---------------+
 | -dns     | --dns_dcv     | Sets domain control validation to DNS (CNAME) method. This argument must be used without a value    | Conditionally |
 +----------+---------------+-----------------------------------------------------------------------------------------------------+---------------+
-| -enc     | --ecnrypt     | If set, private key will be encrypted with a passphrase. This argument must be used without a value | No            |
+| -sans    | --sans        | Additional Domains to activate certificate for                                                      | No            |
++----------+---------------+-----------------------------------------------------------------------------------------------------+---------------+
+| -sans_e  | --sans_emails | A comma-separated list of approver emails for additional domains                                    | No            |
++----------+---------------+-----------------------------------------------------------------------------------------------------+---------------+
+| -enc     | --encrypt     | If set, private key will be encrypted with a passphrase. This argument must be used without a value | No            |
 +----------+---------------+-----------------------------------------------------------------------------------------------------+---------------+
 
 GetInfo
@@ -278,4 +286,3 @@ ___________
 * Cancelled
 * NewPurchase
 * NewRenewal
-
