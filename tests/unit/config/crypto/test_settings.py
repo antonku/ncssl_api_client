@@ -1,6 +1,6 @@
 import mock
 from unittest import TestCase
-from ncssl_api_client.config.api import settings
+from ncssl_api_client.config.crypto import settings
 
 try:
     reload  # Python 2.7
