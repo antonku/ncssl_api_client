@@ -29,3 +29,28 @@ class UtilsTest(TestCase):
             Utils.get_csr_as_text('test')
             call_arg, _ = mocked_open.call_args
             self.assertTrue(call_arg[0].endswith('test.csr'))
+
+    @mock.patch('ncssl_api_client.services.utils.utils.Utils.create_directory', return_value=False)
+    def test_update_path_exists_on_user_cancel(self, utils_mock):
+        with self.assertRaises(SystemExit):
+            Utils.update_path('test')
+
+    @mock.patch('ncssl_api_client.services.utils.utils.Utils.create_directory', return_value=True)
+    def test_update_path_returns_path_on_create_directory_success(self, utils_mock):
+        self.assertIsNone(Utils.update_path('test'))
+
+    @mock.patch('ncssl_api_client.services.utils.utils.os.makedirs', return_value=True)
+    def test_create_directory_returns_true_on_success(self, makedirs_mock):
+        self.assertTrue(Utils.create_directory('test'))
+
+    @mock.patch('ncssl_api_client.services.utils.utils.os.makedirs')
+    @mock.patch('ncssl_api_client.services.utils.utils.input')
+    def test_create_directory_returns_false_on_user_cancel(self, input_mock, makedirs_mock):
+        makedirs_mock.side_effect = EnvironmentError()
+        self.assertFalse(Utils.create_directory('test'))
+
+    @mock.patch('ncssl_api_client.services.utils.utils.os.makedirs')
+    @mock.patch('ncssl_api_client.services.utils.utils.input', return_value='Y')
+    def test_create_directory_returns_true_on_user_overwrite(self, input_mock, makedirs_mock):
+        makedirs_mock.side_effect = EnvironmentError()
+        self.assertTrue(Utils.create_directory('test'))
