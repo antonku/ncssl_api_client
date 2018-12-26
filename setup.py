@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='ncssl-api-client',
-      version='0.3',
+      version='0.4',
       description='Command line interface for Namecheap SSL API',
       url='https://github.com/antonku/ncssl_api_client',
       author='Anton Kudinov',
@@ -16,7 +16,6 @@ setup(name='ncssl-api-client',
           'xmltodict',
           'pyyaml',
           'coloredlogs',
-          'ipgetter',
       ],
       classifiers=[
           'Development Status :: 3 - Alpha',
