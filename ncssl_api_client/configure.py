@@ -66,7 +66,7 @@ def setup_configs():
             source_api_config = yaml.load(f)
             api_config = update_with_user_api_info(source_api_config)
             stream = open(user_api_config_path, 'w')
-            yaml.dump(api_config, stream, default_flow_style=False, indent=4, width=79)
+            yaml.safe_dump(api_config, stream, default_flow_style=False, indent=4, width=79)
 
     user_crypto_config_path = DELIMITER.join([CRYPTO_CONFIG_PATH, SETTINGS_FILE_NAME])
     if not os.path.exists(user_crypto_config_path):
