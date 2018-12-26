@@ -4,7 +4,7 @@ from shutil import copyfile
 from builtins import input
 from getpass import getpass
 from pprint import pprint
-from services import ipgetter
+from ncssl_api_client.services import ipgetter
 
 BASE_DIR = 'ncsslapi'
 CERTS_DIR = 'certs'
