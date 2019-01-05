@@ -9,10 +9,6 @@ NC SSL API Client
 
 Command line client for communication with Namecheap SSL API
 
-Warning
------------------
-**This package is currently in alpha status. Use on your own risk!**
-
 Installation
 ------------
 >>> pip install ncssl-api-client
