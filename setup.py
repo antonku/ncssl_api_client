@@ -16,7 +16,6 @@ setup(name='ncssl-api-client',
           'xmltodict',
           'pyyaml',
           'coloredlogs',
-          'ipgetter',
       ],
       classifiers=[
           'Development Status :: 5 - Production/Stable',
