@@ -13,4 +13,5 @@ class CreateParser(AbstractParser):
         super(CreateParser, self).add_parser(subparsers)
         self.parser.add_argument("-t", "--type", help="Type", type=CertificateTypes, default='PositiveSSL', dest='Type', choices=list(CertificateTypes))
         self.parser.add_argument("-y", "--years", help="Validity period", type=int, default=1, dest='Years')
+        self.parser.add_argument("-sans", "--sans_to_add", help="[Multi-Domain only] Number of additional SANs to purchase", type=int, dest="SANStoADD")
 
