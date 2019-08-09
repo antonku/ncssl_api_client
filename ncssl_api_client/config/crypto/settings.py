@@ -8,7 +8,7 @@ user_crypto_settings_path = DELIMITER.join([home, CRYPTO_CONFIG_PATH, SETTINGS_F
 
 try:
     with open(user_crypto_settings_path) as f:
-        settings = yaml.load(f)
+        settings = yaml.load(f, Loader=yaml.FullLoader)
 
     locals().update(settings)
 except EnvironmentError:  # FileNotFoundError

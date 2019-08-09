@@ -63,7 +63,7 @@ def setup_configs():
     if not os.path.exists(user_api_config_path):
         source_api_config_path = DELIMITER.join([PACKAGE_DIR, CONFIG_DIR, API_DIR, SETTINGS_FILE_NAME])
         with open(source_api_config_path) as f:
-            source_api_config = yaml.load(f)
+            source_api_config = yaml.load(f, Loader=yaml.FullLoader)
             api_config = update_with_user_api_info(source_api_config)
             stream = open(user_api_config_path, 'w')
             yaml.safe_dump(api_config, stream, default_flow_style=False, indent=4, width=79)

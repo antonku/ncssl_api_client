@@ -8,7 +8,7 @@ user_api_settings_path = DELIMITER.join([home, API_CONFIG_PATH, SETTINGS_FILE_NA
 
 try:
     with open(user_api_settings_path) as f:
-        settings = yaml.load(f)
+        settings = yaml.load(f, Loader=yaml.FullLoader)
 
     locals().update(settings)
 except EnvironmentError:  # FileNotFoundError
